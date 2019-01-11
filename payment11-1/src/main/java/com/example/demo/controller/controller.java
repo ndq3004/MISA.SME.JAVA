@@ -18,7 +18,8 @@ public class controller {
 
 	@Autowired
 	PaymentReceiptService payservice;
-
+	
+	@Request
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public void save() {
 		payservice.savePayment();
