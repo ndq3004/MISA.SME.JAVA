@@ -31,7 +31,7 @@ public class JwtUtil {
     }
 
     public static String getSubject(HttpServletRequest httpServletRequest){
-        String token = CookieUtil.getValue(httpServletRequest);
+        String token = httpServletRequest.getHeader("authorization");
         if(token == null) return null;
         try {
         	return Jwts.parser().setSigningKey(signingKey).parseClaimsJws(token).getBody().getSubject();

@@ -8,7 +8,6 @@ import org.springframework.web.util.WebUtils;
 
 import com.webencyclop.demo.auth.exception.InvalidRequestException;
 import com.webencyclop.demo.auth.middlewares.Authenticate;
-import com.webencyclop.demo.auth.util.CookieUtil;
 import com.webencyclop.demo.auth.util.JwtUtil;
 import com.webencyclop.demo.auth.util.ValidateUtil;
 import com.webencyclop.demo.model.User;
@@ -74,15 +73,13 @@ public class UserController {
         long expMillis=86400000;
         Date exp=new Date(nowMillis+expMillis);
 		String token = JwtUtil.generateToken(iss,now,exp,email,id,roleId);
-		CookieUtil.create(httpServletResponse, token);
-		System.out.println(token);
 		// một số thông tin basic có thể trả về kèm luôn cho client tiện routing,gửi tiếp req,...,
 		JSONObject obj = new JSONObject();
-//		obj.put("issuer", iss);
-//		obj.put("roleId", roleId);
-//		obj.put("email",email);
-//		obj.put("issuedAt",now);
-//		obj.put("expiration", exp);
+		obj.put("issuer", iss);
+		obj.put("roleId", roleId);
+		obj.put("email",email);
+		obj.put("issuedAt",now);
+		obj.put("expiration", exp);
 		obj.put("token", token);
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
@@ -133,17 +130,32 @@ public class UserController {
 //		return new ResponseEntity<>(obj, HttpStatus.OK);
 //	}
 	@RequestMapping(value = "/api/home", method = RequestMethod.GET)
-	public ResponseEntity<Object> home(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {		
+	public ResponseEntity home(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse){		
 		Authenticate.Auth(httpServletRequest, httpServletResponse);
 		// tra ve du lieu home neu req duoc xac thuc nguoi dung
-		String result="this is home data for authen req";
-		
-		return new ResponseEntity<>(result, HttpStatus.OK);
+		//String result="this is home data for authen req";
+//		try {
+//			httpServletResponse.sendRedirect("Views/home");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		return new ResponseEntity<>("success", HttpStatus.OK);
 	}
+	
+//	@RequestMapping(value = "/api/home", method = RequestMethod.GET)
+//	public ResponseEntity<Object> home(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {		
+//		Authenticate.Auth(httpServletRequest, httpServletResponse);
+//		// tra ve du lieu home neu req duoc xac thuc nguoi dung
+//		String result="this is home data for authen req";
+//		
+//		return new ResponseEntity<>(result, HttpStatus.OK);
+//	}
+//	
 	@RequestMapping(value = "/api/logout", method = RequestMethod.GET)
 	public ResponseEntity<Object> logout(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {	
 		Authenticate.Auth(httpServletRequest, httpServletResponse);
-		CookieUtil.clear(httpServletResponse);
+		//CookieUtil.clear(httpServletResponse);
 		String result="Logout success";
 		return new ResponseEntity<>(result, HttpStatus.OK);
 

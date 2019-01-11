@@ -34,18 +34,35 @@
 //})
 
 $(document).ready(function(){
-//	$.ajax({
-//		method:"GET",
-//		url: "/api/home",
-//		headers:{
-//			"cookie": localStorage.getItem("authenCookie")
-//		}
-//	})
-//	.done(function(data){
-//		alert(data);
+	if(localStorage.getItem("authenCookie") != ""){
+		$.ajax({
+			method:"GET",
+			url: "/api/home",
+			headers:{
+				"cookie": localStorage.getItem("authenCookie")
+			},
+			success: function(data, txtStatus){
+				alert(data);
+				if(txtStatus == "success") window.location.href="/home";
+			}
+		})	
+	}
+	
 //	})
 	
-	
+	//if there is a token
+//	if(localStorage.setItem("authenCookie", data.token) != ""){
+//		$.ajax({
+//			method:"GET",
+//			url: "/api/home",
+//			beforeSend: function(xhr) {
+//		      xhr.setRequestHeader('authorization',localStorage.getItem("authenCookie"));
+//		    }
+//		})
+//		.done(function(data, txtStatus,xhr){
+//			if(txtStatus == "success") window.local.href="/home";
+//		})
+//	}
 	//if there no token
 	$('#btnLogin').on('click', function(){
 		alert("haha");
@@ -65,26 +82,12 @@ $(document).ready(function(){
 						$.ajax({
 							method:"GET",
 							url: "/api/home",
-							headers:{
-								
-								'cookie':'content-Type=application/json; Accept=/; Cache-Control=no-cache;authorization='+ 
-								localStorage.getItem("authenCookie") + 
-								'; path=/api/login; domain=localhost; HttpOnly; Expires=Tue, 19 Jan 2038 03:14:07 GMT;'
-							}
-//							beforeSend: function(xhr) {
-//								xhr.setRequestHeader('content-Type', 'application/json');
-//								xhr.setRequestHeader("Accept", "/")
-//								xhr.setRequestHeader("Cache-Control", "no-cache")
-//						      xhr.setRequestHeader('authorization',localStorage.getItem("authenCookie"));
-//						      xhr.setRequestHeader('path','/api/login');
-//						      xhr.setRequestHeader('domain', 'localhost');
-//						      xhr.setRequestHeader('Expires', 'Tue, 19 Jan 2038 03:14:07 GMT');
-//						      
-//
-//						    }
+							beforeSend: function(xhr) {
+						      xhr.setRequestHeader('authorization',localStorage.getItem("authenCookie"));
+						    }
 						})
-						.done(function(data, txtStatus){
-							alert(data.status);
+						.done(function(data, txtStatus,xhr){
+							 if(txtStatus == "success") window.location.href="/home";
 						})
 					}
 				
@@ -97,4 +100,3 @@ $(document).ready(function(){
 	})
 })
 
-//function setAuthen(t_name, )

@@ -1,4 +1,4 @@
-﻿alert($('#txtContactMobile').val());
+﻿
 $(document).ready(function () {
     $('#btnRegister').on('click', loginJS.btnRegister_onClick);
 })
@@ -13,29 +13,45 @@ var loginJS = Object.create({
      * */
     btnRegister_onClick: function () {
         // thực hiện validate:
-    	alert($('#txtContactMobile').val());
-//    	if(isNotEmpty())
-//    	{
-//    		alert("name");
-//    		$.ajax({
-//    			method:"post",
-//    			url: "/register",
-//    			data: {contactMobile: $('#txtContactMobile').val(), contactEmail: $('#txtContactEmail').val(), password: $('#txtPassword').val()}
-//    		})
-//    	}
+
+    	if(isNotEmpty())
+    	{
+    		$.ajax({
+    			method:"POST",
+    			url: "/register",
+    			data: {contactMobile: $('#txtContactMobile').val(), 
+    					contactEmail: $('#txtContactEmail').val(), 
+    					password: $('#txtPassword').val()},   					
+    			success: function(data, textStatus, xhr){
+
+    				if(textStatus=="success") {
+    					alert("đăng kí thành công. Click để chuyển tới trang đăng nhập");
+    					window.location.href="/login";
+    				}
+    			},
+    			error: function(data, txtStatus, xhr){
+    				switch(data.status){
+    					case 409: alert("Tài khoản đã tồn tại!");
+    				}
+    				
+    			}
+    					
+    		})
+    		
+    	}
     },
     doRegister: function () {
 
     }
 })
-//function isNotEmpty(){
-//	if($('#txtContactMobile').val()==='' || $('#txtContactEmail').val()==="" || $('#txtPassword').val()==="" || $('#txtRePassword').val()==="")
-//	{
-//		alert("vui long nhap day du du lieu!" )
-//		return false;
-//	}
-//	else{
-//		if(!($('#txtPassword').val() === $('#txtRePassword').val())) return false; 
-//	}
-//	return true;
-//}
+function isNotEmpty(){
+	if($('#txtContactMobile').val()==='' || $('#txtContactEmail').val()==="" || $('#txtPassword').val()==="" || $('#txtRePassword').val()==="")
+	{
+		alert("vui long nhap day du du lieu!" )
+		return false;
+	}
+	else{
+		if(!($('#txtPassword').val() === $('#txtRePassword').val())) return false; 
+	}
+	return true;
+}
