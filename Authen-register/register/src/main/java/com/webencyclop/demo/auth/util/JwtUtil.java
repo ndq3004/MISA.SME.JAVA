@@ -25,6 +25,7 @@ public class JwtUtil {
                 .setExpiration(exp)
                 .claim("id", id)
                 .claim("roleId", roleId)
+          
                 .signWith(SignatureAlgorithm.HS256, signingKey);
 
         return builder.compact();
@@ -34,6 +35,8 @@ public class JwtUtil {
         String token = httpServletRequest.getHeader("authorization");
         if(token == null) return null;
         try {
+        	Claims claims=Jwts.parser().setSigningKey(signingKey).parseClaimsJws(token).getBody();
+        	System.out.println(claims.get("id"));
         	return Jwts.parser().setSigningKey(signingKey).parseClaimsJws(token).getBody().getSubject();
         }catch(Exception e){
         	throw new JwtException();
