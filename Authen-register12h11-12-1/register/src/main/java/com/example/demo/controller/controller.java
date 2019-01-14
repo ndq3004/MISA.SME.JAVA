@@ -41,6 +41,11 @@ public class controller {
 		modelAndView.setViewName("/Views/rae"); // resources/template/home.html
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "add")
+	public void addRecord() {
+		
+	}
 
 //	 @RequestMapping("/getAll")
 //	    public Map<String, Object> getAll2() {

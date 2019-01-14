@@ -1,4 +1,4 @@
-﻿
+﻿alert("haha");
 $(document).ready(function () {
     $('#btnRegister').on('click', loginJS.btnRegister_onClick);
 })
@@ -16,12 +16,14 @@ var loginJS = Object.create({
 
     	if(isNotEmpty())
     	{
+    		var jsondata = {contactMobile: $('#txtContactMobile').val(), 
+					contactEmail: $('#txtContactEmail').val(), 
+					password: $('#txtPassword').val()};
     		$.ajax({
     			method:"POST",
     			url: "/register",
-    			data: {contactMobile: $('#txtContactMobile').val(), 
-    					contactEmail: $('#txtContactEmail').val(), 
-    					password: $('#txtPassword').val()},   					
+    			contentType:"application/json",
+    			data: JSON.stringify(jsondata),   					
     			success: function(data, textStatus, xhr){
 
     				if(textStatus=="success") {
