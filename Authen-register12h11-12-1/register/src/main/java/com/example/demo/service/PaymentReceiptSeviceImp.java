@@ -73,6 +73,10 @@ public class PaymentReceiptSeviceImp implements PaymentReceiptService {
 	}
 
 	@Override
+	public void savePayment(PaymentReceipt paymentReceipt) {
+		paymentReceiptRepository.save(paymentReceipt);
+	}
+	@Override
 	public List<PaymentReceipt> getAll() {
 		return paymentReceiptRepository.findAll();
 	}

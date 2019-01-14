@@ -48,6 +48,11 @@ public class RefServiceImp implements RefService {
 		}
 //		
 	}
+	
+	@Override
+	public void saveRef(Ref ref) {
+		refRepository.save(ref);
+	}
 
 	@Override
 	public List<Ref> getAll() {

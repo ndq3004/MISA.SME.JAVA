@@ -6,6 +6,8 @@ import com.example.demo.model.Ref;
 
 public interface RefService {
 	public void saveRef();
+	
+	public void saveRef(Ref ref);
 
 	public List<Ref> getAll();
 

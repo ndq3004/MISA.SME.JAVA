@@ -15,6 +15,7 @@ import com.example.demo.repository.PaymentReceiptRepository;
 
 public interface PaymentReceiptService  {
 	public void savePayment();
+	public void savePayment(PaymentReceipt paymentReceipt);
 	public List<PaymentReceipt> getAll();
 //    public List<PaymentReceipt> getPage(long index,int size);
 //    public long countTotalRecord();

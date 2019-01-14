@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.PaymentReceipt;
+import com.example.demo.model.Ref;
 import com.example.demo.service.PaymentReceiptService;
 import com.example.demo.service.RefService;
 
@@ -42,9 +44,11 @@ public class controller {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "add")
-	public void addRecord() {
-		
+	@RequestMapping(value = "/add")
+	public void addRecord(@RequestParam(value = "ref") Ref ref, @RequestParam(value ="paymentReceipt") PaymentReceipt paymentReceipt ) {
+		//authencode
+		refservice.saveRef(ref);
+		payservice.savePayment(paymentReceipt);
 	}
 
 //	 @RequestMapping("/getAll")
