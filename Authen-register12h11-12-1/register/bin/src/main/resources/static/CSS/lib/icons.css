@@ -1,5 +1,5 @@
 ﻿.icon-btnFilenew, .icon-btnClock, .icon-btnDuplicate, .icon-btnView, .icon-btnDelete, .icon-btnHelp, .icon-btnSave, .icon-btnCancel, .icon-btnClose, .icon-btnUtility, .icon-btnFeedback, .icon-undo, .icon-link-undo, .misa-icon-print, .icon-link-Print, .icon-refresh, .icon-btnHelp {
-    background-image: url('/Content/Images/IconSprite.png') !important;
+    background-image: url('/Contents/Images/IconSprite.png') !important;
     background-color: transparent;
     background-repeat: no-repeat;
     margin: 0 auto
@@ -65,7 +65,7 @@
 }
 
 .icon-btnEdit {
-    background: url('/Content/Images/Edit16.png') no-repeat 50% 50% !important;
+    background: url('/Contents/Images/Edit16.png') no-repeat 50% 50% !important;
     width: 16px;
     height: 16px;
     background-color: transparent;

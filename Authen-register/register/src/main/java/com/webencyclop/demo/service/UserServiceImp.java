@@ -20,6 +20,7 @@ public class UserServiceImp implements UserService {
 
 	@Autowired
 	BCryptPasswordEncoder encoder;
+	@Autowired
 	RoleRepository roleRepository;
 	@Autowired
 	UserRepository userRepository;
@@ -27,15 +28,34 @@ public class UserServiceImp implements UserService {
 	public void saveUser(User user){
 		user.setPassword(encoder.encode(user.getPassword()));
 		user.setStatus("VERIFIED");
-		//Role userRole = roleRepository.findByRole("SITE_USER");
-		//user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-		
-		//userRole.setId(1);
-		//userRole.setRole("user");
-		//roleRepository.save(userRole);
+//		Role userRole = roleRepository.findByRole("SITE_USER");
+//		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+		try {
+			Role userRole = roleRepository.findByRole("SITE_USER");
+			if(userRole==null) {
+				Role role1 = new Role();
+				role1.setId(1);
+				role1.setRole("SITE_USER");
+				saveRole(role1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			Role role1 = new Role();
+			role1.setId(1);
+			role1.setRole("SITE_USER");
+			saveRole(role1);
+		}
+		Role userRole = roleRepository.findByRole("SITE_USER");
+		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 		userRepository.save(user);
 	}
-
+	
+	@Override
+	public void saveRole(Role role) {
+		// TODO Auto-generated method stub
+		roleRepository.save(role);
+	}
+	
 
 	@Override
 	public boolean isUserAlreadyPresent(User user) {
