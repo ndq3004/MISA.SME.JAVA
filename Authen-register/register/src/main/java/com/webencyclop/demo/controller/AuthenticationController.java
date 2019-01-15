@@ -69,29 +69,5 @@ public class AuthenticationController {
 		return "/Views/home";
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity registerUser(@RequestBody User user, BindingResult bindingResult) {
-		System.out.println("registering!" + user.getContactMobile() + user.getContactEmail());
-		
-		// Check for the validation
-		if(bindingResult.hasErrors() ) {
-			System.out.println("error");
-			return new ResponseEntity<>(ERROR_MESSAGE, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-
-		}
-		else if(userService.isUserAlreadyPresent(user)){
-			System.out.println("exist");
-			return new ResponseEntity<>("accountexist", new HttpHeaders(), HttpStatus.CONFLICT);		
-		}
-		// lưu user nếu không có lỗi
-		else {		
-			
-			HttpHeaders httphd = new HttpHeaders();
-			httphd.add("key","value");
-			userService.saveUser(user);
-			System.out.println("flag");
-			return new ResponseEntity<>("Register success!",httphd, HttpStatus.OK);
-		}
-
-	}
+	
 }

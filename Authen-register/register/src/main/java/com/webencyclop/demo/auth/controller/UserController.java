@@ -33,15 +33,20 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+
 import com.webencyclop.demo.form.*;
 
 @RestController
 public class UserController {
+	private static final String ERROR_MESSAGE = "error1";
+	
 	@Autowired
 	UserRepository userRepository;
 	@Autowired
 	RoleRepository roleRepository;
-	
+	@Autowired
+	UserService userService;
 	@Autowired
 	UserServiceImp userSvIml;
 	@RequestMapping(value = "/api/login", method = RequestMethod.POST)
@@ -154,7 +159,31 @@ public class UserController {
 //		}
 		return new ResponseEntity<>("success", HttpStatus.OK);
 	}
-	
+	@RequestMapping(value = "/api/register", method = RequestMethod.POST)
+	public ResponseEntity registerUser(@RequestBody User user, BindingResult bindingResult) {
+		System.out.println("registering!" + user.getContactMobile() + user.getContactEmail());
+		
+		// Check for the validation
+		if(bindingResult.hasErrors() ) {
+			System.out.println("error");
+			return new ResponseEntity<>(ERROR_MESSAGE, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+
+		}
+		else if(userService.isUserAlreadyPresent(user)){
+			System.out.println("exist");
+			return new ResponseEntity<>("accountexist", new HttpHeaders(), HttpStatus.CONFLICT);		
+		}
+		// lưu user nếu không có lỗi
+		else {		
+			
+			HttpHeaders httphd = new HttpHeaders();
+			httphd.add("key","value");
+			userService.saveUser(user);
+			System.out.println("flag");
+			return new ResponseEntity<>("Register success!",httphd, HttpStatus.OK);
+		}
+
+	}
 //	@RequestMapping(value = "/api/home", method = RequestMethod.GET)
 //	public ResponseEntity<Object> home(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {		
 //		Authenticate.Auth(httpServletRequest, httpServletResponse);
