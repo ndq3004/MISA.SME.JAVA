@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.webencyclop.demo.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	@Query(value="select u.email FROM auth_user u WHERE u.auth_user_id = :id", nativeQuery=true)
 	public List<String> findContactEmail(@Param("id")int id);

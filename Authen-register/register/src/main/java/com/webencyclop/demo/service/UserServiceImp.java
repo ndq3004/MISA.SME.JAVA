@@ -20,10 +20,13 @@ public class UserServiceImp implements UserService {
 
 	@Autowired
 	BCryptPasswordEncoder encoder;
+	
 	@Autowired
 	RoleRepository roleRepository;
+	
 	@Autowired
 	UserRepository userRepository;
+	
 	@Override
 	public void saveUser(User user){
 		user.setPassword(encoder.encode(user.getPassword()));

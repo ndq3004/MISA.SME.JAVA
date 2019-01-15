@@ -10,6 +10,7 @@ import com.webencyclop.demo.auth.exception.InvalidRequestException;
 import com.webencyclop.demo.auth.middlewares.Authenticate;
 import com.webencyclop.demo.auth.util.JwtUtil;
 import com.webencyclop.demo.auth.util.ValidateUtil;
+import com.webencyclop.demo.model.Role;
 import com.webencyclop.demo.model.User;
 import com.webencyclop.demo.repository.RoleRepository;
 import com.webencyclop.demo.repository.UserRepository;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.Cookie;
@@ -37,6 +39,7 @@ import com.webencyclop.demo.form.*;
 public class UserController {
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
 	RoleRepository roleRepository;
 	
 	@Autowired
@@ -63,7 +66,15 @@ public class UserController {
 		
 		User user = userRepository.findByContactEmail(email);
 	    long id=user.getId();	
-	    int roleId=1;
+	    Set<Role> role = user.getRoles();
+	    int roleId;
+	    if(role.contains("ADMIN_USER")) {
+	    	roleId = roleRepository.findByRole("ADMIN_USER").getId();
+	    }
+	    else {// if(role.contains("SITE_USER")) {
+	    	roleId = roleRepository.findByRole("SITE_USER").getId();
+		}
+	    
 
 	    
 	    // Tạo token,set cookie
@@ -83,6 +94,7 @@ public class UserController {
 		obj.put("token", token);
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
+	
 //		
 //	@RequestMapping(value = "/api/home", method = RequestMethod.GET)
 //	public ResponseEntity<Object> home(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {		
