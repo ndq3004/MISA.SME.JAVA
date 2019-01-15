@@ -47,28 +47,26 @@ public class AuthenticationController {
 	}
 
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
-	public ModelAndView login() {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("Views/login"); // resources/template/login.html
-		return modelAndView;
+	public String login() {
+//		ModelAndView modelAndView = new ModelAndView();
+//		modelAndView.setViewName("Views/login"); // resources/template/login.html
+		return "Views/login";
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public ModelAndView register() {
-		ModelAndView modelAndView = new ModelAndView();
-		User user = new User();
-		modelAndView.addObject("user", user); 
-		modelAndView.setViewName("/Views/register"); // resources/template/register.html
-		return modelAndView;
+	public String register() {
+//		ModelAndView modelAndView = new ModelAndView();
+//		User user = new User();
+//		modelAndView.addObject("user", user);
+//		modelAndView.setViewName("/Views/register"); // resources/template/register.html
+		return "/Views/register";
 	}
-	
 
-	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public ModelAndView home() {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/Views/home"); // resources/template/home.html
-		return modelAndView;
+	public String home() {
+//		ModelAndView modelAndView = new ModelAndView();
+//		modelAndView.setViewName("/Views/home"); // resources/template/home.html
+		return "/Views/home";
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
