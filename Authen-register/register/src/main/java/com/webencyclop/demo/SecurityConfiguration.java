@@ -42,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests()
 				// URLs matching for access rights
-				.antMatchers("/", "/register").permitAll()
+				.antMatchers("/", "/register", "/rae").permitAll()
 				.antMatchers("/test/id:{^[\\\\d]$}", "/login", "/home", "/api/login","/api/home","/api/logout","/api/test").permitAll()
 				.antMatchers("/register").permitAll()
 				.antMatchers("/home/**").hasAnyAuthority("SUPER_USER", "ADMIN_USER", "SITE_USER")
@@ -67,7 +67,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/resources/**", "/CSS/**", "/static/**", "/Contents/**", "/css/**", "/js/**", "/images/**", "/Scripts/**");
+		web.ignoring().antMatchers("/resources/**", "/rae/**", "/CSS/**", "/static/**", "/Contents/**", "/css/**", "/js/**", "/images/**", "/Scripts/**");
 	}
 
 }

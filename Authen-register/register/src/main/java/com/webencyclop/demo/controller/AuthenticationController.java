@@ -22,7 +22,7 @@ import com.webencyclop.demo.model.User;
 import com.webencyclop.demo.service.UserService;
 
 
-@RestController
+@Controller
 public class AuthenticationController {
 
 	private static final String ERROR_MESSAGE = "error1";
@@ -67,6 +67,10 @@ public class AuthenticationController {
 //		ModelAndView modelAndView = new ModelAndView();
 //		modelAndView.setViewName("/Views/home"); // resources/template/home.html
 		return "/Views/home";
+	}
+	@RequestMapping(value = "/rae", method = RequestMethod.GET)
+	public String rae() {
+		return "/Views/rae";
 	}
 
 	
