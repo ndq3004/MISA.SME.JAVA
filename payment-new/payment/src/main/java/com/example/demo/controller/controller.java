@@ -54,6 +54,7 @@ public class controller {
 				totalPage = x / size + 1;}
 		List<PaymentReceipt> lst = payservice.getPage(0, size);
 		map.put("totalPage", totalPage);
+		map.put("totalRecord", x);
 		map.put("data", lst);
 		return map;
 	}

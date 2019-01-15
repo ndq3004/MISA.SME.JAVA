@@ -37,7 +37,7 @@ public class PaymentReceipt {
 	@JoinColumn(name = "reftypeId")
 	private Ref ref;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "payment")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "payment",fetch = FetchType.LAZY)
 	private Set<Invoice_Detail> invoices;
 
 	@Column(name = "Posted_Date")
@@ -82,13 +82,13 @@ public class PaymentReceipt {
 		this.ref = ref;
 	}
 
-	public Set<Invoice_Detail> getInvoices() {
-		return invoices;
-	}
-
-	public void setInvoices(Set<Invoice_Detail> invoices) {
-		this.invoices = invoices;
-	}
+//	public Set<Invoice_Detail> getInvoices() {
+//		return invoices;
+//	}
+//
+//	public void setInvoices(Set<Invoice_Detail> invoices) {
+//		this.invoices = invoices;
+//	}
 
 	public LocalDate getPostedDate() {
 		return postedDate;
