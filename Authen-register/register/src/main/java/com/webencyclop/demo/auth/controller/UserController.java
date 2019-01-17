@@ -159,6 +159,7 @@ public class UserController {
 //		}
 		return new ResponseEntity<>("success", HttpStatus.OK);
 	}
+	
 	@RequestMapping(value = "/api/register", method = RequestMethod.POST)
 	public ResponseEntity registerUser(@RequestBody User user, BindingResult bindingResult) {
 		System.out.println("registering!" + user.getContactMobile() + user.getContactEmail());
