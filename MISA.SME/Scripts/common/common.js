@@ -1,7 +1,12 @@
 ﻿var mcombobox = document.registerElement('x-foo');
 
 $(document).ready(function () {
-    
+    $(document).click(function () {
+        var target = event.target;
+        if (!$(target).hasClass('hide-if-outside')) {
+            $('.hide-if-outside').hide();
+        }
+    })
 });
 
 var commonJS = {
@@ -19,6 +24,34 @@ var commonJS = {
             $('html').removeClass('loading');
         }
     },
+
+    /* -------------------------------------
+     * Hiển thị câu thông báo
+     */
+    showNotice: function (msg) {
+        if (!$('body').find('#message-box').length) {
+            var html = '<div id="message-box" title="MISA SME 2019">' +
+                msg +
+                '</div >';
+            $('body').append(html);
+        }
+        $(function () {
+            $("#message-box").dialog({
+                modal: true,
+                resizable: false,
+                resizable: false,
+                class: "bottom-dialogmessage",
+                width: 350,
+                buttons: {
+                    "Đồng ý": function () {
+                        $(this).dialog("close");
+                    },
+                }
+            });
+
+        });
+    },
+
     /* -----------------------------------------
      * Hiển thị hộp thoại cảnh báo
      * Created by: NVMANH (03/03/2018)
@@ -31,30 +64,38 @@ var commonJS = {
      * Created by: NVMANH (03/03/2018)
      */
     showConfirm: function (msg, confirmCallBack) {
-        var html = '<div class="question-content"><div class="question-icon"></div>Bạn có thực sự muốn xóa khách hàng đã chọn?</div>' +
-            '<div class="dialog-message-bottom-toolbar">' +
-            '<button id="btnConfirm">Đồng ý</button>' +
-            '<button id="btnCancel">Hủy bỏ</button>' +
-            '</div>';
-        $('#dialog-message').html(html);
+        if (!$('body').find('#message-box').length) {
+            var html = '<div id="message-box">' +
+                msg +
+                '</div >';
+            $('body').append(html);
+        }
+
         $(function () {
-            $("#dialog-message").dialog({
+            $("#message-box").dialog({
                 modal: true,
+                resizable: false,
                 resizable: false,
                 class: "bottom-dialogmessage",
                 width: 350,
+                buttons: {
+                    "Đồng ý": function () {
+                        (function () {
+                            var cached_function = confirmCallBack;
+                            return function () {
+                                $('#dialog-message').dialog("close")
+                                var result = cached_function.apply(this, arguments); // use .apply() to call it
+                                return result;
+                            };
+                        })()
+                        $(this).dialog("close");
+                    },
+                    "Hủy bỏ": function () {
+                        $(this).dialog("close");
+                    }
+                }
             });
-            confirmCallBack = (function () {
-                var cached_function = confirmCallBack;
-                return function () {
-                    $('#dialog-message').dialog("close")
-                    var result = cached_function.apply(this, arguments); // use .apply() to call it
-                    return result;
-                };
-            })();
-            //Gán Even cho các Button:
-            $('.dialog-message-bottom-toolbar #btnConfirm').click(confirmCallBack);
-            $('.dialog-message-bottom-toolbar #btnCancel').click(function () { $('#dialog-message').dialog("close") });
+           
         });
     },
 

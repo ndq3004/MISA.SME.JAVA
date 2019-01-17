@@ -9,14 +9,14 @@ table.loading tbody:after, *.loading:after {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.1);
-    background-image: url('/Content/Icons/loadingData2.gif');
+    background-image: url('/Contents/Icons/loadingData2.gif');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 40px 40px;
     content: "";
 }
 
-tr:hover {
+tbody tr:hover {
     background-color: #c1ddf1;
 }
 
@@ -63,3 +63,9 @@ td{
     background-position: 0 0;
 }
 
+.message-box{
+    width:200px;
+    height:100px;
+    border:1px solid #ccc;
+    background-color:#fafafa;
+}
