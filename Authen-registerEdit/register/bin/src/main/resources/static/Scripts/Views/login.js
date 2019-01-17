@@ -32,14 +32,14 @@
 //
 //    }
 //})
-
+alert(localStorage.getItem("authenCookie"))
 $(document).ready(function(){
 	if(localStorage.getItem("authenCookie") != ""){
 		$.ajax({
 			method:"GET",
-			url: "/api/home",
-			headers:{
-				"cookie": localStorage.getItem("authenCookie")
+			url: "http:/localhost:9090/api/home",
+			beforeSend: function(xhr) {
+			      xhr.setRequestHeader('authorization',localStorage.getItem("authenCookie"));
 			},
 			success: function(data, txtStatus){
 				alert(data);
@@ -65,13 +65,11 @@ $(document).ready(function(){
 //	}
 	//if there no token
 	$('#btnLogin').on('click', function(){
-		alert("haha");
 		var jsonObj = {email:$('#email').val(), password: $('#password').val()};
     	$.ajax({
 			method:"POST",
 			url:"/api/login",
 			contentType: "application/json",
-			dataType: 'json',
 			data: JSON.stringify(jsonObj),
 			success: function(data, txtStatus, xhr){
 				alert(data.token);

@@ -70,7 +70,7 @@ public class AuthenticationController {
 	}
 	@RequestMapping(value = "/rae", method = RequestMethod.GET)
 	public String rae() {
-		return "/Views/rae";
+		return "/Views/raeOld";
 	}
 
 	
