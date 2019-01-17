@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -151,13 +152,11 @@ public class UserController {
 		Authenticate.Auth(httpServletRequest, httpServletResponse);
 		// tra ve du lieu home neu req duoc xac thuc nguoi dung
 		//String result="this is home data for authen req";
-//		try {
-//			httpServletResponse.sendRedirect("Views/home");
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		return new ResponseEntity<>("success", HttpStatus.OK);
+		String email = (String) httpServletRequest.getAttribute("email");
+		JSONObject obj = new JSONObject();
+		obj.put("status", "success");
+		obj.put("email", email);
+		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/api/register", method = RequestMethod.POST)

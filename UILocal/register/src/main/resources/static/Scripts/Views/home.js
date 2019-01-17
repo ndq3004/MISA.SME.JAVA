@@ -1,7 +1,7 @@
 /**
  * 
  */
-
+alert("home");
 $(document).ready(function () {
     $('button').on('click', loginJS.btnRegister_onClick);
 })

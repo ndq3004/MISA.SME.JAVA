@@ -81,11 +81,6 @@ public class UserServiceImp implements UserService {
 	    	User user = userRepository.findByContactEmail(email);
 	    	System.out.println("day roi " + user.getContactEmail());
 	    	if(!user.getContactEmail().equals("")) {
-	    		System.out.println("day roi " + user.getContactEmail() + !encoder.matches(password, user.getPassword()));
-	    		System.out.println("day roi " + user.getContactEmail() + !encoder.matches(password, user.getPassword()));
-	    		System.out.println(user.getPassword() + "\n" + encoder.encode(password));
-	    		System.out.println(user.getPassword() + "\n" + encoder.encode(password));
-	    		
 	    		 return encoder.matches(password, user.getPassword());
 	    	}
 	    	

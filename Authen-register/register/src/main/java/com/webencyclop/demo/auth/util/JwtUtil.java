@@ -36,7 +36,7 @@ public class JwtUtil {
         if(token == null) return null;
         try {
         	Claims claims=Jwts.parser().setSigningKey(signingKey).parseClaimsJws(token).getBody();
-        	System.out.println(claims.get("id"));
+        	httpServletRequest.setAttribute("email", claims.getSubject());
         	return Jwts.parser().setSigningKey(signingKey).parseClaimsJws(token).getBody().getSubject();
         }catch(Exception e){
         	throw new JwtException();
