@@ -1,5 +1,6 @@
 package com.webencyclop.demo.auth.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,6 +51,7 @@ public class UserController {
 	UserService userService;
 	@Autowired
 	UserServiceImp userSvIml;
+	@CrossOrigin
 	@RequestMapping(value = "/api/login", method = RequestMethod.POST)
 	public ResponseEntity<Object> login(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws Exception{
 		JSONParser parser = new JSONParser();
@@ -148,7 +150,7 @@ public class UserController {
 //		return new ResponseEntity<>(obj, HttpStatus.OK);
 //	}
 	@RequestMapping(value = "/api/home", method = RequestMethod.GET)
-	public ResponseEntity home(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse){		
+	public ResponseEntity<Object> home(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse){		
 		Authenticate.Auth(httpServletRequest, httpServletResponse);
 		// tra ve du lieu home neu req duoc xac thuc nguoi dung
 		//String result="this is home data for authen req";
