@@ -31,8 +31,8 @@
             <div class="header-user-info">
                 <div class="user-info-box">
                     <span class="avatar-user"></span>
-                    <span class="user-info">
-                        Nguyễn Văn Mạnh
+                    <span class="user-info" id="user-info">
+                        
                     </span>
                 </div>
                 <div class="user-menu-box hide-if-outside">
@@ -577,8 +577,8 @@
                 <a id="btnEdit-popup" class="toolbar-item">
                     <span class="cls-btnWrap"><span class="toolbar-item-icon icon-btnEdit"></span><span class="toolbar-item-text">Sửa</span></span>
                 </a>
-                <a id="btnEdit-popup" class="toolbar-item">
-                    <span class="cls-btnWrap" id="btnsave-popup"><span class="toolbar-item-icon icon-btnSave"></span><span class="toolbar-item-text">Cất</span></span>
+                <a id="btnSave-popup" class="toolbar-item">
+                    <span class="cls-btnWrap" ><span class="toolbar-item-icon icon-btnSave"></span><span class="toolbar-item-text">Cất</span></span>
                 </a>
                 <a id="btnDelete-popup" class="toolbar-item">
                     <span class="cls-btnWrap"><span class="toolbar-item-icon icon-btnDelete"></span><span class="toolbar-item-text">Xóa</span></span>
@@ -602,8 +602,8 @@
                     <div>
                         <div class="row">
                             <div class="col-md-3">Đối tượng</div>
-                            <div class="col-md-4"><input PopUpField="object1"/></div>
-                            <div class="col-md-5 padding-4"><input PopUpField="object2"/></div>
+                            <div class="col-md-4"><input PopUpField="objectID"/></div>
+                            <div class="col-md-5 padding-4"><input PopUpField="objectName"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-3">Địa chỉ</div>
@@ -616,8 +616,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-3">Lý do thu</div>
-                            <div class="col-md-4"><input PopUpField="reason1"/></div>
-                            <div class="col-md-5 padding-4"><input PopUpField="reason1"/></div>
+                            <div class="col-md-4"><input PopUpField="reasonTypeID"/></div>
+                            <div class="col-md-5 padding-4"><input PopUpField="journalMemo"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-3">Nhân viên thu</div>
@@ -634,11 +634,11 @@
                     <div>
                         <div class="row">
                             <div class="col-md-5">Ngày hạch toán</div>
-                            <div class="col-md-7"><input type="date" /></div>
+                            <div class="col-md-7"><input PopUpField="dateRecord" type="date" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">Ngày chứng từ</div>
-                            <div class="col-md-7"><input type="date" /></div>
+                            <div class="col-md-7"><input type="date" PopUpField="dateFinance" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">Số chứng từ</div>

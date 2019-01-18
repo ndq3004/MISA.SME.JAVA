@@ -1,0 +1,20 @@
+/**
+ * 
+ */
+
+$(document).ready(function(){
+	$.ajax({
+		method: "GET",
+		url:"http://localhost:9090/api/home",
+		beforeSend: function(xhr) {
+		      xhr.setRequestHeader('authorization',localStorage.getItem("authenCookie"));
+		},
+		success: function(data){
+			console.log(data.email);
+			$('#username').text((data.email).split("@"));
+		},
+		error: function(err){
+			console.log(err);
+		}
+	})
+})

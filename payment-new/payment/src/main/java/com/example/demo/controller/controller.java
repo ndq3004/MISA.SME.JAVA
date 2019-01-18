@@ -92,8 +92,8 @@ public class controller {
 		}
 //		Reason reason=re
 		Boolean status=payservice.add(payment);
-		if(status) map.put("message", "success!");
-		else map.put("error", "fail!");
+		if(status) map.put("message", "success");
+		else map.put("message", "fail");
 		return map;
 	}
 	
@@ -103,15 +103,15 @@ public class controller {
 		Map<String, Object> map=new HashMap<String, Object>();
 		
 		if(invoice.getDescriptionInvoice()==null) {
-		 map.put("error", "Description not empty!");
+		 map.put("message", "Description not empty!");
 		return map;
 		}
 		if(invoice.getAccountObjectID()<=0) {
-			 map.put("error", "fail!");
+			 map.put("message", "fail!");
 				return map;
 		}
 		if(invoice.getAmount()<=0) {
-			 map.put("error", "fail!");
+			 map.put("message", "fail!");
 				return map;
 		}
 		PaymentReceipt paymentReceipt=payservice.getPaymentById(idPayment);
@@ -121,27 +121,27 @@ public class controller {
 		payservice.update(paymentReceipt);
 		Boolean status=invoiceservice.add(invoice);
 		if(status) map.put("message", "success!");
-		else map.put("error", "fail!");
+		else map.put("message", "fail!");
 		return map;
 	}
 	
 	//sua 
 	@PostMapping("/updateRef")
 	public Map<String, Object> updateRef(@RequestBody PaymentReceipt payment){
-Map<String, Object> map=new HashMap<String, Object>();
+		Map<String, Object> map=new HashMap<String, Object>();
 		if(payment.getReason()==null) {
-			map.put("error", "fail!");
+			map.put("message", "fail!");
 			return map;
 		}
 
 		if(payment.getRef()==null) {
-			map.put("error", "fail!");
+			map.put("message", "fail!");
 			return map;
 		}
 
 		Boolean status=payservice.update(payment);
 		if(status) map.put("message", "success!");
-		else map.put("error", "fail!");
+		else map.put("message", "fail!");
 		return map;
 	}
 	//sua 

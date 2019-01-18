@@ -1,4 +1,27 @@
-﻿var fakeData = [];
+﻿////get name
+//$(document).ready(function(){
+//	if(localStorage.getItem("authenCookie") != "" && localStorage.getItem("authenCookie") != null){
+//		$.ajax({
+//			method: "GET",
+//			url: "http://localhost:9090" + "/api/home",
+//			beforeSend: function(xhr) {
+//			      xhr.setRequestHeader('authorization',localStorage.getItem("authenCookie"));
+//			},
+//			success: function(data, status, xhr){
+//				$('#user-info').text(data.email);
+//			},
+//			error: function(err, stt, xhr){
+//				window.location.href="http://localhost:8080" + "/login";			
+//			}
+//		})	
+//	}
+//	else{
+//		window.location.href="http://localhost:8080" + "/login";
+//	}
+//	
+//})
+
+var fakeData = [];
 var getPage = function() {
 
 	// code ajax
@@ -331,6 +354,63 @@ var raeJS = Object.create({
 	}
 })
 
-$('#btnsave-popup').click(function(){
-	
+$('#btnSave-popup').click(function(){
+	var dataRef={"refID":"1",
+				"accountObjectID":$("input[PopUpField='objectID']").val(),
+				"accountObject":$("input[PopUpField='objectName']").val(),
+				"reason":{
+					"reasonTypeID":$("input[PopUpField='reasonTypeID']").val(),
+					"journalMemo":$("input[PopUpField='journalMemo']").val()
+				},
+				"ref":{
+					
+				},
+				"invoice_detail":{
+					
+				},
+				"postedDate":{},
+				"createDate":$("input[PopUpField='dateFinance']").val(),
+				"refNoFinance":$("input[PopUpField='financeNo']").val()}
+	$.ajax({
+		method:"post",
+		url:"http://localhost:3000" + "/addRef",
+		contentType: "application/json",
+		beforeSend : function(xhr) {
+			xhr.setRequestHeader('authorization', localStorage
+					.getItem("authenCookie"));
+		},
+		data: dataRef,
+		success: function(data){
+			if(data.message == success)
+				alert("thêm chứng từ thành công!");
+			else if(data.message == fail)
+				alert("có lỗi khi thêm chứng từ. Vui lòng kiểm tra nhâp liệu!");
+		}
+	})
 })
+
+$('#btnAdd-popup').click(function(){
+	$("input[PopUpField='objectID']").text("");
+	$("input[PopUpField='objectName']").text("");
+	$("input[PopUpField='address']").text("");
+	$("input[PopUpField='object1']").text("");
+	$("input[PopUpField='object1']").text("");
+	$("input[PopUpField='object1']").text("");
+	$("input[PopUpField='object1']").text("");
+	$("input[PopUpField='object1']").text("");
+})
+
+//Get day month year
+
+function(attr, element){
+  var date = new Date($(element).val());
+  day = date.getDate();
+  month = date.getMonth() + 1;
+  year = date.getFullYear();
+  alert([day, month, year].join('/'));
+  switch(attr){
+  	case "day": return day;
+  	case "month": return month;
+  	case "year": return year;
+  }
+};
