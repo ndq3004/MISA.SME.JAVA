@@ -49,7 +49,7 @@ var getPage = function() {
 			$('#tblCustomerList').on('click', '#tbodyRAE tr',
 					raeJS.rowRAE_OnClick);
 
-			$('#tblCustomerList').on('dbclick', '#tbodyRAE tr',
+			$('#tblCustomerList').on('dblclick', '#tbodyRAE tr',
 					raeJS.btnAdd_OnClick);
 
 			$('#btnAdd').click(raeJS.btnAdd_OnClick);
@@ -179,14 +179,14 @@ var raeJS = Object.create({
 			 var fakeData = {
 			 PostedDate: '21/04/2018',
 			 RefDate: '21/04/2018',
-			 RefNo: 'UNC00013' + i,
+			 RefNo: 'UNC00013',
 			 JournalMemo: 'Trả lương nhân viên tháng 4 năm 2018',
 			 RefTypeName: 'Chi tiền lương cho Nhân viên',
 			 TotalAmount: '245041092',
 			 AccountObjectName: 'Công ty TNHH Phú Thái',
 			 ReasonTypeName: 'Trả lương nhân viên',
 			 CashBookPostedDate: '21/04/2018',
-			 RefNoFiance: 'CT00001' + i,
+			 RefNoFiance: 'CT00001',
 			 DepartmentName: 'Công ty Cổ Phần MISA',
 			 };
 			 var detail = {
@@ -331,4 +331,6 @@ var raeJS = Object.create({
 	}
 })
 
-
+$('#btnsave-popup').click(function(){
+	
+})

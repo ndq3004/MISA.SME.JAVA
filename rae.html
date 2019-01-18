@@ -578,7 +578,7 @@
                     <span class="cls-btnWrap"><span class="toolbar-item-icon icon-btnEdit"></span><span class="toolbar-item-text">Sửa</span></span>
                 </a>
                 <a id="btnEdit-popup" class="toolbar-item">
-                    <span class="cls-btnWrap"><span class="toolbar-item-icon icon-btnSave"></span><span class="toolbar-item-text">Cất</span></span>
+                    <span class="cls-btnWrap" id="btnsave-popup"><span class="toolbar-item-icon icon-btnSave"></span><span class="toolbar-item-text">Cất</span></span>
                 </a>
                 <a id="btnDelete-popup" class="toolbar-item">
                     <span class="cls-btnWrap"><span class="toolbar-item-icon icon-btnDelete"></span><span class="toolbar-item-text">Xóa</span></span>
@@ -602,26 +602,26 @@
                     <div>
                         <div class="row">
                             <div class="col-md-3">Đối tượng</div>
-                            <div class="col-md-4"><input /></div>
-                            <div class="col-md-5 padding-4"><input /></div>
+                            <div class="col-md-4"><input PopUpField="object1"/></div>
+                            <div class="col-md-5 padding-4"><input PopUpField="object2"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-3">Địa chỉ</div>
-                            <div class="col-md-9"><input /></div>
+                            <div class="col-md-9"><input PopUpField="address"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-3">Nộp vào TK</div>
-                            <div class="col-md-4"><input /></div>
-                            <div class="col-md-5 padding-4"><input /></div>
+                            <div class="col-md-4"><input PopUpField="accountTo1"/></div>
+                            <div class="col-md-5 padding-4"><input PopUpField="accountTo2"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-3">Lý do thu</div>
-                            <div class="col-md-4"><input /></div>
-                            <div class="col-md-5 padding-4"><input /></div>
+                            <div class="col-md-4"><input PopUpField="reason1"/></div>
+                            <div class="col-md-5 padding-4"><input PopUpField="reason1"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-3">Nhân viên thu</div>
-                            <div class="col-md-4"><input /></div>
+                            <div class="col-md-4"><input PopUpField="StaffName"/></div>
                         </div>
                     </div>
                 </fieldset>
@@ -642,7 +642,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-5">Số chứng từ</div>
-                            <div class="col-md-7"><input /></div>
+                            <div class="col-md-7"><input PopUpField="financeNo"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5"> </div>
@@ -704,7 +704,6 @@
     <script src="../Scripts/common/validation.js"></script>
     <script src="../Scripts/common/common.js"></script>
     <script src="../Scripts/common/header.js"></script>
-    <script src="../Scripts/Views/login.js"></script>
     <script src="../Scripts/Views/rae.js"></script>
 </body>
 </html>
