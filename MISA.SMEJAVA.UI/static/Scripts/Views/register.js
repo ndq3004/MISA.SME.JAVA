@@ -33,7 +33,7 @@ var loginJS = Object.create({
     			},
     			error: function(data, txtStatus, xhr){
     				switch(data.status){
-    					case 409: alert("Tài khoản đã tồn tại!");
+                        $('#register-error').text("Tài khoản đã tồn tại!");
     				}
     				
     			}
