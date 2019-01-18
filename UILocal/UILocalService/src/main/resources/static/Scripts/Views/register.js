@@ -1,4 +1,4 @@
-﻿alert("haha");
+﻿
 $(document).ready(function () {
     $('#btnRegister').on('click', loginJS.btnRegister_onClick);
 })
