@@ -1,39 +1,5 @@
-﻿//alert("hahaaaa");
-//$(document).ready(function () {
-//    $('#btnLogin').on('click', loginJS.btnLogin_onClick);
-//})
-//
-///**
-// * Object JS phục vụ cho trang Login
-// */
-//var loginJS = Object.create({
-//    /*
-//     * Hàm xử lý khi nhấn Button Đăng ký
-//     * Created by: NVMANH (28/12/2018) 
-//     * */
-//    btnLogin_onClick: function () {
-//        // thực hiện validate:
-//    	alert("hah");
-//    	$.ajax({
-//    		method:"post",
-//    		url:"/api/login",
-//    		data:{email:$('#email').val(), password: $('#password')},
-//    		success: function(){
-//    			
-//    		},
-//    		error: function(){
-//    			
-//    		}
-//    		
-//    	})
-//    	
-//    },
-//    doLogin: function () {
-//
-//    }
-//})
-alert(localStorage.getItem("authenCookie"))
-$(document).ready(function(){
+﻿$(document).ready(function(){
+	//debugger
 	if(localStorage.getItem("authenCookie") != ""){
 		$.ajax({
 			method:"GET",
@@ -42,59 +8,52 @@ $(document).ready(function(){
 			      xhr.setRequestHeader('authorization',localStorage.getItem("authenCookie"));
 			},
 			success: function(data, txtStatus){
-				alert(data);
-				if(txtStatus == "success") window.location.href="/home";
+				var dt = JSON.stringify(data);
+				console.log(dt.status + dt.email + data);
+				if(txtStatus == "success") {
+					window.location.href="http://localhost:8080/home";
+				}
+			},
+			error: function(){
+				
 			}
 		})	
 	}
-	
-//	})
-	
-	//if there is a token
-//	if(localStorage.setItem("authenCookie", data.token) != ""){
-//		$.ajax({
-//			method:"GET",
-//			url: "/api/home",
-//			beforeSend: function(xhr) {
-//		      xhr.setRequestHeader('authorization',localStorage.getItem("authenCookie"));
-//		    }
-//		})
-//		.done(function(data, txtStatus,xhr){
-//			if(txtStatus == "success") window.local.href="/home";
-//		})
-//	}
+
 	//if there no token
 	$('#btnLogin').on('click', function(){
-		var jsonObj = {email:$('#email').val(), password: $('#password').val()};
+		var jsonObj = {"email":$('#txtUserName').val(), "password": $('#txtPassword').val()};
     	$.ajax({
 			method:"POST",
-			url:"/api/login",
+			url:"http://localhost:9090/api/login",
 			contentType: "application/json",
 			data: JSON.stringify(jsonObj),
 			success: function(data, txtStatus, xhr){
-				alert(data.token);
 				if(txtStatus=="success") 
 					{
 						localStorage.setItem("authenCookie", data.token);
-						alert(localStorage.getItem("authenCookie"));
 						$.ajax({
 							method:"GET",
-							url: "/api/home",
+							url: "http://localhost:9090/api/home",
 							beforeSend: function(xhr) {
 						      xhr.setRequestHeader('authorization',localStorage.getItem("authenCookie"));
 						    }
 						})
 						.done(function(data, txtStatus,xhr){
-							 if(txtStatus == "success") window.location.href="/home";
+							 if(txtStatus == "success") {
+								 window.location.href="http://localhost:8080/home";
+								 console.log(data);	
+							 }
 						})
 					}
-				
 			},
 			error: function(){
-				
+				$('#errorlogin').text("Lỗi đăng nhập. Sai tên tài khoản hoặc mật khẩu!");
 			}
 		
-	})
+			
+    	})
 	})
 })
+
 

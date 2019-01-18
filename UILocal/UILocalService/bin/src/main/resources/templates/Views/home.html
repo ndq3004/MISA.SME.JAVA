@@ -1,15 +1,34 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="utf-8" />
     <title>Đăng nhập SME.NET</title>
-    <link th:href="@{/CSS/bootstrap.min.css}" rel="stylesheet" />
-    <link th:href="@{/CSS/jquery-ui.css}" rel="stylesheet" />
-    <link th:href="@{/CSS/lib/animation.css}" rel="stylesheet" />
-    <link th:href="@{/CSS/lib/glyphicon.css}" rel="stylesheet" />
-    <link th:href="@{/CSS/lib/icons.css}" rel="stylesheet" />
-    <link th:href="@{/CSS/Views/login.css}" rel="stylesheet" />
-    <link th:href="@{/CSS/Views/control.css}" rel="stylesheet" />
+    <link href="../CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="../CSS/jquery-ui.css" rel="stylesheet" />
+    <link href="../CSS/lib/animation.css" rel="stylesheet" />
+    <link href="../CSS/lib/glyphicon.css" rel="stylesheet" />
+    <link href="../CSS/lib/icons.css" rel="stylesheet" />
+    <link href="../CSS/Views/login.css" rel="stylesheet" />
+    <link href="../CSS/Views/control.css" rel="stylesheet" />
+    <style>
+    	#dashboard, #profile {
+    		font-size: 20px;
+    		height:100px;
+    		width:200px;
+    		padding-top:33px;
+    		padding-left:55px;
+    		background-color: #e9eaea;
+    		border-radious: 30%;
+    		cursor: pointer;
+    	}
+    	#dashboard{
+    		position: relative;
+    	}
+    	#profile{
+    		float:left;
+    		height: 200px;
+    	}
+    </style>
 </head>
 <body>
     <div id="wraper">
@@ -25,7 +44,17 @@
             <div class="container body-content">
                 Chào mừng bạn sử dụng SME.NET 2019
             </div>
+            <div id="view-username" style="float: right; display:none; margin-right: 100px;">
+            	<span style="display:inline-block; margin-right: 5px;">Hello </span> 
+            	<span id="username" style="display:inline-block;"></span>
+            	<a id="logout-btn" href="" style="display:inline-block; margin-left: 10px;">Logout</a>
+            </div>
         </div>
+        <div style="display:inline-flex">
+        	<div id="profile">Your Profile</div>
+        	<div id="dashboard">Dashboard</div>
+        </div>
+        
         <div class="footer-contact-content">
 
 
@@ -105,12 +134,11 @@
             </div>
         </div>
     </div>
-	
-    <script th:src="@{/Scripts/lib/jquery-3.2.1.min.js}"></script>
-    <script th:src="@{/Scripts/lib/bootstrap.min.js}"></script>
-    <script th:src="@{/Scripts/lib/popper.min.js}"></script>
-    <script th:src="@{/Scripts/common/validation.js}"></script>
-    <script th:src="@{/Scripts/Views/login.js}"></script>
-    
+
+    <script src="../Scripts/lib/jquery-3.2.1.min.js"></script>
+    <script src="../Scripts/lib/bootstrap.min.js"></script>
+    <script src="../Scripts/lib/popper.min.js"></script>
+    <script src="../Scripts/common/validation.js"></script>
+	<script src="../Scripts/Views/home.js"></script>
 </body>
 </html>

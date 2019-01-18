@@ -38,7 +38,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 
 import com.webencyclop.demo.form.*;
-
+@CrossOrigin
 @RestController
 public class UserController {
 	private static final String ERROR_MESSAGE = "error1";

@@ -21,7 +21,7 @@ var loginJS = Object.create({
 					password: $('#txtPassword').val()};
     		$.ajax({
     			method:"POST",
-    			url: "http:/localhost:9090/api/register",
+    			url: "http://localhost:9090/api/register",
     			contentType:"application/json",
     			data: JSON.stringify(jsondata),   					
     			success: function(data, textStatus, xhr){

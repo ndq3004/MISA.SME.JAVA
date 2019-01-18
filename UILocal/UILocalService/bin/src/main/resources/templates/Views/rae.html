@@ -5,6 +5,7 @@
     <title>Thu chi tiền</title>
     <link href="../rae/CSS/bootstrap.min.css" rel="stylesheet" />
     <link href="../rae/CSS/jquery-ui.css" rel="stylesheet" />
+    <link href="../rae/CSS/common/jquery-ui-custom.css" rel="stylesheet" />
     <link href="../rae/CSS/lib/animation.css" rel="stylesheet" />
     <link href="../rae/CSS/lib/glyphicon.css" rel="stylesheet" />
     <link href="../rae/CSS/lib/icons.css" rel="stylesheet" />
@@ -13,19 +14,32 @@
     <link href="../rae/CSS/common/main.css" rel="stylesheet" />
     <link href="../rae/CSS/common/control.css" rel="stylesheet" />
     <link href="../rae/CSS/common/combobox.css" rel="stylesheet" />
-    <link href="../rae/CSS/common/panelSubMenu.css" rel="stylesheet"/>
-    <link href="../../rae/CSS/Views/rae.css" rel="stylesheet" />
+    <link href="../rae/CSS/Views/header.css" rel="stylesheet" />
+    <link href="../rae/CSS/common/panelSubMenu.css" rel="stylesheet" />
+    <link href="../rae/CSS/Views/rae.css" rel="stylesheet" />
     <link href="../rae/CSS/lib/icons.css" rel="stylesheet" />
-    
+
 </head>
 <body>
     <div id="wraper">
         <div id="header">
-            <div style="width: 250px">
+            <div style="width: 200px">
                 <a href="index.html">
-                    <div class="page-content logo" style="width: 250px">
+                    <div class="page-content logo" style="width: 200px">
                     </div>
                 </a>
+            </div>
+            <div class="header-user-info">
+                <div class="user-info-box">
+                    <span class="avatar-user"></span>
+                    <span class="user-info">
+                        Nguyễn Văn Mạnh
+                    </span>
+                </div>
+                <div class="user-menu-box hide-if-outside">
+                    <div id="btnChangePassword" command="ChangePassword" class="user-menu-item">Thay đổi mật khẩu</div>
+                    <div id="btnLogout" command="Logout" class="user-menu-item">Đăng xuất</div>
+                </div>
             </div>
         </div>
         <div class="register-content">
@@ -295,37 +309,37 @@
                                     <table id="tblCustomerList" class="bordered cellpadding-0 cellspacing-0">
                                         <thead>
                                             <tr class="gridHeader">
-                                                <th id='column-header-1' fieldData ="PostedDate" DataType="Date" class="gridPanel-header-item-title width-150 no-border-left">
-                                                   Ngày hạch toán<div id='column-header-1-sizer'></div>
+                                                <th id='column-header-1' fieldData="PostedDate" DataType="Date" class="gridPanel-header-item-title width-150 no-border-left">
+                                                    Ngày hạch toán<div id='column-header-1-sizer'></div>
                                                 </th>
-                                                <th id='column-header-2' fieldData ="RefDate" DataType="Date" class="gridPanel-header-item-title width-200">
+                                                <th id='column-header-2' fieldData="RefDate" DataType="Date" class="gridPanel-header-item-title width-200">
                                                     Ngày chứng từ<div id='column-header-2-sizer'></div>
                                                 </th>
-                                                <th id='column-header-3' fieldData ="RefNo" DataType="Text" class="gridPanel-header-item-title width-200">
+                                                <th id='column-header-3' fieldData="RefNo" DataType="Text" class="gridPanel-header-item-title width-200">
                                                     Số chứng từ<div id='column-header-3-sizer'></div>
                                                 </th>
-                                                <th id='column-header-4' fieldData ="JournalMemo" DataType="Text" class="gridPanel-header-item-title width-150">
+                                                <th id='column-header-4' fieldData="JournalMemo" DataType="Text" class="gridPanel-header-item-title width-150">
                                                     Diễn giải<div id='column-header-4-sizer'></div>
                                                 </th>
-                                                <th id='column-header-5' fieldData ="TotalAmount" DataType="Money" class="gridPanel-header-item-title width-200">
+                                                <th id='column-header-5' fieldData="TotalAmount" DataType="Money" class="gridPanel-header-item-title width-200">
                                                     Số tiền<div id='column-header-5-sizer'></div>
                                                 </th>
-                                                <th id='column-header-6' fieldData ="AccountObjectName" DataType="Text" class="gridPanel-header-item-title width-150">
+                                                <th id='column-header-6' fieldData="AccountObjectName" DataType="Text" class="gridPanel-header-item-title width-150">
                                                     Đối tượng<div id='column-header-6-sizer'></div>
                                                 </th>
-                                                <th id='column-header-7' fieldData ="ReasonTypeName" DataType="Text" class="gridPanel-header-item-title width-200">
+                                                <th id='column-header-7' fieldData="ReasonTypeName" DataType="Text" class="gridPanel-header-item-title width-200">
                                                     Lý do thu/chi<div id='column-header-7-sizer'></div>
                                                 </th>
-                                                <th id='column-header-8' fieldData ="CashBookPostedDate" DataType="Date" class="gridPanel-header-item-title width-150">
+                                                <th id='column-header-8' fieldData="CashBookPostedDate" DataType="Date" class="gridPanel-header-item-title width-150">
                                                     Ngày ghi sổ quỹ<div id='column-header-8-sizer'></div>
                                                 </th>
-                                                <th id='column-header-9' fieldData ="RefTypeName" DataType="Text" class="gridPanel-header-item-title width-150">
+                                                <th id='column-header-9' fieldData="RefTypeName" DataType="Text" class="gridPanel-header-item-title width-150">
                                                     Loại chứng từ<div id='column-header-9-sizer'></div>
                                                 </th>
-                                                <th id='column-header-10' fieldData ="RefNoFiance" DataType="Text" class="gridPanel-header-item-title width-150">
+                                                <th id='column-header-10' fieldData="RefNoFiance" DataType="Text" class="gridPanel-header-item-title width-150">
                                                     Số chứng từ (Sổ QT)<div id='column-header-10-sizer'></div>
                                                 </th>
-                                                <th id='column-header-11' fieldData ="DepartmentName" DataType="Text" class="gridPanel-header-item-title width-200">
+                                                <th id='column-header-11' fieldData="DepartmentName" DataType="Text" class="gridPanel-header-item-title width-200">
                                                     Chi nhánh<div id='column-header-11-sizer'></div>
                                                 </th>
                                                 <!--<th id='column-header-12' class="gridPanel-header-item-title width-150">
@@ -443,9 +457,7 @@
                                                 </th>-->
                                             </tr>
                                         </thead>
-                                        <tbody id="tbodyRAE">
-
-                                        </tbody>
+                                        <tbody id="tbodyRAE"></tbody>
                                     </table>
                                 </div>
                                 <div class="cls-bottomToolbar">
@@ -488,7 +500,7 @@
                                             <div id="box-triggerWrap" class="targetNotEffectByMouseUp">
                                                 <div class="tbar-combox-triggerWrap targetNotEffectByMouseUp">
                                                     <div class="input-trigger targetNotEffectByMouseUp">
-                                                        <input id="inputTotalRecord" class="targetNotEffectByMouseUp" value="100" style="width: 36px; text-align: center; height: 22px;" />
+                                                        <input id="inputTotalRecord" class="targetNotEffectByMouseUp" disabled value="100" style="width: 36px; text-align: center; height: 22px;" />
                                                     </div>
                                                     <div id="arrow-combo-trigger" class="targetNotEffectByMouseUp">
                                                     </div>
@@ -506,6 +518,74 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--Chi tiết phiếu thu/chi-->
+                            <div class="frmCustomerDetail">
+                                <div class="rae-detail-title">Chi tiết</div>
+                                <div class="rae-detail-box">
+                                    <table id="tblRAEDetail" class="bordered cellpadding-0 cellspacing-0" style="border-right:none">
+                                        <thead>
+                                            <tr class="gridHeader">
+                                                <th id='column-header-1' style="flex:1;" fieldData="JournalMemo" DataType="Text" class="gridPanel-header-item-title no-border-left width-200">
+                                                    Diễn giải<div id='column-header-1-sizer'></div>
+                                                </th>
+                                                <th id='column-header-2' fieldData="CreditAmount" DataType="Text" class="gridPanel-header-item-title width-150">
+                                                    TK Nợ<div id='column-header-2-sizer'></div>
+                                                </th>
+                                                <th id='column-header-3' fieldData="DebitAmount" DataType="Text" class="gridPanel-header-item-title width-150">
+                                                    TK Có<div id='column-header-3-sizer'></div>
+                                                </th>
+                                                <th id='column-header-4' fieldData="TotalAmount" DataType="Text" class="gridPanel-header-item-title width-150">
+                                                    Số tiền<div id='column-header-4-sizer'></div>
+                                                </th>
+                                                <th id='column-header-5' fieldData="AccountObject" DataType="Money" class="gridPanel-header-item-title width-150">
+                                                    Đối tượng<div id='column-header-5-sizer'></div>
+                                                </th>
+                                                <th id='column-header-6' fieldData="AccountObjectName" DataType="Text" class="gridPanel-header-item-title width-200">
+                                                    Tên đối tượng<div id='column-header-6-sizer'></div>
+                                                </th>
+                                                <th id='column-header-7' fieldData="DepartmentName" DataType="Text" class="gridPanel-header-item-title width-200">
+                                                    Đơn vị<div id='column-header-7-sizer'></div>
+                                                </th>
+                                                <th id='column-header-11' class="absorbing-column" fieldData="StatisCode" DataType="Text" style="border-right:none; text-align:center;">
+                                                    Mã thống kê<div id='column-header-11-sizer'></div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyRAEDetail">
+                                            <tr>
+                                                <td class="no-border-left">Dư nợ khách hàng</td>
+                                                <td>3321</td>
+                                                <td>1111</td>
+                                                <td>25.000.540</td>
+                                                <td>CTY_PHUTHAI</td>
+                                                <td>Công ty TNHH Phú Thái</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="no-border-left">Dư nợ khách hàng</td>
+                                                <td>3321</td>
+                                                <td>1111</td>
+                                                <td>25.000.540</td>
+                                                <td>CTY_PHUTHAI</td>
+                                                <td>Công ty TNHH Phú Thái</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="no-border-left">Dư nợ khách hàng</td>
+                                                <td>3321</td>
+                                                <td>1111</td>
+                                                <td>25.000.540</td>
+                                                <td>CTY_PHUTHAI</td>
+                                                <td>Công ty TNHH Phú Thái</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -513,12 +593,176 @@
         </div>
     </div>
 
-    <script src="../rae/Scripts/lib/jquery-3.2.1.min.js"></script>
-    <script src="../rae/Scripts/lib/bootstrap.min.js"></script>
-    <script src="../rae/Scripts/lib/popper.min.js"></script>
-    <script src="../rae/Scripts/common/validation.js"></script>
-    <script src="../rae/Scripts/common/common.js"></script>
-    <script src="../rae/Scripts/Views/login.js"></script>
-    <script src="../rae/Scripts/Views/rae.js"></script>
+    <!--Form chi tiết sử dụng cho Thêm, sửa, xóa-->
+    <div id="frmRAEDetail" title="Công ty Cổ phần MISA">
+        <!--Toobar-->
+        <div class="toolbar toolbar-detail">
+            <div class="toolbar-body">
+                <a id="btnAdd" class="toolbar-item">
+                    <span class="cls-btnWrap"><span class="toolbar-item-icon icon-btnFilenew"></span><span class="toolbar-item-text">Thêm</span></span>
+                </a>
+                <a id="btnDuplicate" class="toolbar-item">
+                    <span class="cls-btnWrap"><span class="toolbar-item-icon icon-btnDuplicate"></span><span class="toolbar-item-text">Nhân bản</span></span>
+                </a>
+                <a id="btnEdit" class="toolbar-item">
+                    <span class="cls-btnWrap"><span class="toolbar-item-icon icon-btnEdit"></span><span class="toolbar-item-text">Sửa</span></span>
+                </a>
+                <a id="btnEdit" class="toolbar-item">
+                    <span class="cls-btnWrap"><span class="toolbar-item-icon icon-btnSave"></span><span class="toolbar-item-text">Cất</span></span>
+                </a>
+                <a id="btnDelete" class="toolbar-item">
+                    <span class="cls-btnWrap"><span class="toolbar-item-icon icon-btnDelete"></span><span class="toolbar-item-text">Xóa</span></span>
+                </a>
+                <a id="btnRefresh" class="toolbar-item">
+                    <span class="cls-btnWrap"><span class="toolbar-item-icon icon-refresh"></span><span class="toolbar-item-text">Nạp</span></span>
+                </a>
+            </div>
+        </div>
+
+        <!--Tiêu đề form-->
+        <div class="title-form-detail">
+            Thu tiền gửi
+        </div>
+
+        <!--Thông tin chung-->
+        <div class="general-voucher-info row">
+            <div class="general-info col-8">
+                <fieldset>
+                    <legend> Thông tin chung </legend>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-3">Đối tượng</div>
+                            <div class="col-md-4"><input /></div>
+                            <div class="col-md-5 padding-4"><input /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">Địa chỉ</div>
+                            <div class="col-md-9"><input /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">Nộp vào TK</div>
+                            <div class="col-md-4"><input /></div>
+                            <div class="col-md-5 padding-4"><input /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">Lý do thu</div>
+                            <div class="col-md-4"><input /></div>
+                            <div class="col-md-5 padding-4"><input /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">Nhân viên thu</div>
+                            <div class="col-md-4"><input /></div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <!--Thông tin chứng từ-->
+            <div class="voucher-info col-4" style="padding-left:8px;">
+                <fieldset>
+                    <legend> Chứng từ </legend>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-5">Ngày hạch toán</div>
+                            <div class="col-md-7"><input type="date" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">Ngày chứng từ</div>
+                            <div class="col-md-7"><input type="date" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">Số chứng từ</div>
+                            <div class="col-md-7"><input /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5"> </div>
+                            <div class="col-md-7"> </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5"> </div>
+                            <div class="col-md-7"> </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <!--Chi tiết hạch toán-->
+        <div class="detail-info">
+            <div class="rae-detail-title">1. Hạch toán</div>
+            <div class="rae-detail-box">
+                <table id="tblDetail" class="bordered cellpadding-0 cellspacing-0" style="border-right:none">
+                    <thead>
+                        <tr class="gridHeader">
+                            <th id='column-header-1' style="flex:1;" fieldData="JournalMemo" DataType="Text" class="gridPanel-header-item-title no-border-left width-200">
+                                Diễn giải<div id='column-header-1-sizer'></div>
+                            </th>
+                            <th id='column-header-2' fieldData="CreditAmount" DataType="Text" class="gridPanel-header-item-title width-150">
+                                TK Nợ<div id='column-header-2-sizer'></div>
+                            </th>
+                            <th id='column-header-3' fieldData="DebitAmount" DataType="Text" class="gridPanel-header-item-title width-150">
+                                TK Có<div id='column-header-3-sizer'></div>
+                            </th>
+                            <th id='column-header-4' fieldData="TotalAmount" DataType="Text" class="gridPanel-header-item-title width-150">
+                                Số tiền<div id='column-header-4-sizer'></div>
+                            </th>
+                            <th id='column-header-5' fieldData="AccountObject" DataType="Money" class="gridPanel-header-item-title width-150">
+                                Đối tượng<div id='column-header-5-sizer'></div>
+                            </th>
+                            <th id='column-header-6' fieldData="AccountObjectName" DataType="Text" class="gridPanel-header-item-title width-200">
+                                Tên đối tượng<div id='column-header-6-sizer'></div>
+                            </th>
+                            <th id='column-header-7' fieldData="DepartmentName" DataType="Text" class="gridPanel-header-item-title width-200">
+                                Đơn vị<div id='column-header-7-sizer'></div>
+                            </th>
+                            <th id='column-header-11' fieldData="StatisCode" DataType="Text" style="border-right:none; text-align:center;"class="gridPanel-header-item-title width-200">
+                                Mã thống kê<div id='column-header-11-sizer'></div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyRAEDetail">
+                        <tr>
+                            <td class="no-border-left">Dư nợ khách hàng</td>
+                            <td>3321</td>
+                            <td>1111</td>
+                            <td>25.000.540</td>
+                            <td>CTY_PHUTHAI</td>
+                            <td>Công ty TNHH Phú Thái</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="no-border-left">Dư nợ khách hàng</td>
+                            <td>3321</td>
+                            <td>1111</td>
+                            <td>25.000.540</td>
+                            <td>CTY_PHUTHAI</td>
+                            <td>Công ty TNHH Phú Thái</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="no-border-left">Dư nợ khách hàng</td>
+                            <td>3321</td>
+                            <td>1111</td>
+                            <td>25.000.540</td>
+                            <td>CTY_PHUTHAI</td>
+                            <td>Công ty TNHH Phú Thái</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="quick-help"></div>
+    </div>
+    <script src="../Scripts/lib/jquery-3.2.1.min.js"></script>
+    <script src="../Scripts/lib/jquery-ui.js"></script>
+    <script src="../Scripts/lib/bootstrap.min.js"></script>
+    <script src="../Scripts/lib/popper.min.js"></script>
+    <script src="../Scripts/common/validation.js"></script>
+    <script src="../Scripts/common/common.js"></script>
+    <script src="../Scripts/common/header.js"></script>
+    <script src="../Scripts/Views/rae.js"></script>
 </body>
 </html>
