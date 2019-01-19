@@ -1,4 +1,5 @@
-package com.example.demo.Auth;
+package com.example.demo.auth;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 

@@ -1,4 +1,4 @@
-﻿alert("haha");
+﻿
 $(document).ready(function () {
     $('#btnRegister').on('click', loginJS.btnRegister_onClick);
 })
@@ -21,7 +21,7 @@ var loginJS = Object.create({
 					password: $('#txtPassword').val()};
     		$.ajax({
     			method:"POST",
-    			url: "http:/localhost:9090/api/register",
+    			url: "http://localhost:9090/api/register",
     			contentType:"application/json",
     			data: JSON.stringify(jsondata),   					
     			success: function(data, textStatus, xhr){
@@ -32,9 +32,8 @@ var loginJS = Object.create({
     				}
     			},
     			error: function(data, txtStatus, xhr){
-    				switch(data.status){
-    					case 409: alert("Tài khoản đã tồn tại!");
-    				}
+                        $('#register-error').text("Tài khoản đã tồn tại!");
+    	
     				
     			}
     					

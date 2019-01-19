@@ -282,6 +282,7 @@
                                 <div class="cls-navigation-breadcrumb cls-padding-8">
                                     <span class="breadcrumb-parent"><span class="icon-breadcrumb">SME2019</span></span>
                                     <span class="breadcrumb-children-last">Thu/Chi tiền</span>
+                                    
                                 </div>
                             </div>
                             <div class="frmCustomerList">
@@ -599,29 +600,30 @@
             <div class="general-info col-8">
                 <fieldset>
                     <legend> Thông tin chung </legend>
+                   <input type="hidden"  PopUpField="refID">
                     <div>
                         <div class="row">
                             <div class="col-md-3">Đối tượng</div>
-                            <div class="col-md-4"><input PopUpField="objectID"/></div>
-                            <div class="col-md-5 padding-4"><input PopUpField="objectName"/></div>
+                            <div class="col-md-4"><input type="number" PopUpField="objectID" class="text-required"/></div>
+                            <div class="col-md-5 padding-4"><input PopUpField="objectName" class="text-required"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-3">Địa chỉ</div>
-                            <div class="col-md-9"><input PopUpField="address"/></div>
+                            <div class="col-md-9"><input PopUpField="address" class="text-required"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-3">Nộp vào TK</div>
-                            <div class="col-md-4"><input PopUpField="accountTo1"/></div>
-                            <div class="col-md-5 padding-4"><input PopUpField="accountTo2"/></div>
+                            <div class="col-md-4"><input PopUpField="accountTo1" class="text-required"/></div>
+                            <div class="col-md-5 padding-4"><input PopUpField="accountTo2" class="text-required"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-3">Lý do thu</div>
-                            <div class="col-md-4"><input PopUpField="reasonTypeID"/></div>
-                            <div class="col-md-5 padding-4"><input PopUpField="journalMemo"/></div>
+                            <div class="col-md-4"><input PopUpField="reasonTypeID" type="number"  class="text-required"/></div>
+                            <div class="col-md-5 padding-4"><input PopUpField="journalMemo" class="text-required"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-3">Nhân viên thu</div>
-                            <div class="col-md-4"><input PopUpField="StaffName"/></div>
+                            <div class="col-md-4"><input PopUpField="StaffName" class="text-required"/></div>
                         </div>
                     </div>
                 </fieldset>
@@ -634,15 +636,15 @@
                     <div>
                         <div class="row">
                             <div class="col-md-5">Ngày hạch toán</div>
-                            <div class="col-md-7"><input PopUpField="dateRecord" type="date" /></div>
+                            <div class="col-md-7"><input type="date" PopUpField="dateRecord" data-date="" data-date-format="DD MM YYYY"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">Ngày chứng từ</div>
-                            <div class="col-md-7"><input type="date" PopUpField="dateFinance" /></div>
+                            <div class="col-md-7"><input type="date" PopUpField="dateFinance" data-date="" data-date-format="DD MM YYYY" /></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">Số chứng từ</div>
-                            <div class="col-md-7"><input PopUpField="financeNo"/></div>
+                            <div class="col-md-7"><input type="number" PopUpField="financeNo" class="text-required"/></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5"> </div>
@@ -660,9 +662,9 @@
         <div class="detail-info">
             <div class="rae-detail-title">1. Hạch toán</div>
             <div class="rae-detail-box">
-                <table id="tblDetail" class="bordered cellpadding-0 cellspacing-0" style="border-right:none">
+                <table id="tblDetail-popup" class="bordered cellpadding-0 cellspacing-0" style="border-right:none">
                     <thead>
-                        <tr class="gridHeader">
+                        <tr class="gridHeader" id="gridHeader_popup">
                             <th id='column-header-1' style="flex:1;" fieldData="JournalMemo" DataType="Text" class="gridPanel-header-item-title no-border-left width-200">
                                 Diễn giải<div id='column-header-1-sizer'></div>
                             </th>
@@ -689,7 +691,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody id="tbodyRAEDetail">
+                    <tbody id="tbodyRAEDetail-popup">
                       
                     </tbody>
                 </table>
@@ -697,6 +699,8 @@
         </div>
         <div class="quick-help"></div>
     </div>
+    <span id="overlay" class="alert alert-success">asdasdsad</span>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
     <script src="../Scripts/lib/jquery-3.2.1.min.js"></script>
     <script src="../Scripts/lib/jquery-ui.js"></script>
     <script src="../Scripts/lib/bootstrap.min.js"></script>

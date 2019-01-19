@@ -1,4 +1,5 @@
-package com.example.demo.Auth;
+package com.example.demo.auth;
+
 public class Sender {
 	private long id=-1;
 	private String email="";

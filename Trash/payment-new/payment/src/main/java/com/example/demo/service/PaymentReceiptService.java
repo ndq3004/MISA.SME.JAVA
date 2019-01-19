@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.data.domain.Example;
@@ -18,4 +19,8 @@ public interface PaymentReceiptService  {
 	public List<PaymentReceipt> getAll();
     public List<PaymentReceipt> getPage(long index,int size);
     public long countTotalRecord();
+    public boolean add(PaymentReceipt payment);
+    public boolean update(PaymentReceipt payment);
+    public boolean delete(PaymentReceipt payment);
+    public PaymentReceipt getPaymentById(String id);
 }

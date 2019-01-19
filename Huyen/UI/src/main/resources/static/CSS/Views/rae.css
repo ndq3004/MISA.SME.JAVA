@@ -663,3 +663,8 @@ legend {
 .padding-4 {
     padding-left: 4px;
 }
+
+.alert {
+	position: absolute;
+
+}

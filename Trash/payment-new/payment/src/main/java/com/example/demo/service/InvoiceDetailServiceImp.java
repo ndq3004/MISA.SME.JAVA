@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -50,6 +51,48 @@ public class InvoiceDetailServiceImp implements InvoiceDetailService {
 			invoiceDetailRepository.save(inv_detail);
 			//inv_detail.setDescriptionInvoice(rand.nextInt(desc.size()));
 		}
+	}
+	@Override
+	public boolean add(Invoice_Detail invoice) {
+	//them invoice va update lai ref
+		try {
+			invoiceDetailRepository.save(invoice);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	@Override
+	public boolean update(Invoice_Detail invoice) {
+		try {
+			invoiceDetailRepository.save(invoice);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	@Override
+	public boolean remove(Invoice_Detail invoice) {
+		try {
+			invoiceDetailRepository.delete(invoice);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	@Override
+	public List<Invoice_Detail> getInvoice_Details(String id) {
+		List<Invoice_Detail> lst=new ArrayList<Invoice_Detail>();
+		try {
+			lst=invoiceDetailRepository.findByPaymentId(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return lst;
 	}
 
 //	@Override

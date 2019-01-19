@@ -88,4 +88,46 @@ public class PaymentReceiptSeviceImp implements PaymentReceiptService {
 		// TODO Auto-generated method stub
 		return paymentReceiptRepository.count();
 	}
+
+	@Override
+	public boolean add(PaymentReceipt payment) {
+		try {
+			paymentReceiptRepository.save(payment);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+
+	@Override
+	public boolean update(PaymentReceipt payment) {
+		try {
+			paymentReceiptRepository.save(payment);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+
+	@Override
+	public boolean delete(PaymentReceipt payment) {
+		try {
+			paymentReceiptRepository.delete(payment);;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+
+	@Override
+	public PaymentReceipt getPaymentById(String id) {
+		// TODO Auto-generated method stub
+		return paymentReceiptRepository.findById(id).get();
+	}
 }

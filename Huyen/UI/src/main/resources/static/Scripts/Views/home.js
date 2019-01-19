@@ -36,11 +36,9 @@ $(document).ready(function(){
 
 $('#logout-btn').click(function(){
 	localStorage.setItem("authenCookie","");
-//	window.location.href="http://localhost:8080/login";
 	window.location.href="http://localhost:8080/login";
 })
 
 $('#dashboard').click(function(){
 	window.location.href="/rae";
-	//window.location.href="http://localhost:8080/rae";
 })

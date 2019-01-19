@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -39,7 +40,7 @@ public class Invoice_Detail {
 	@Column(name = "account_object_id")
 	private int accountObjectID;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name = "refId")
 	private PaymentReceipt payment;
 
@@ -83,10 +84,10 @@ public class Invoice_Detail {
 		this.accountObjectID = accountObjectID;
 	}
 
-	public PaymentReceipt getPayment() {
-		return payment;
-	}
-
+//	public PaymentReceipt getPayment() {
+//		return payment;
+//	}
+//
 	public void setPayment(PaymentReceipt payment) {
 		this.payment = payment;
 	}

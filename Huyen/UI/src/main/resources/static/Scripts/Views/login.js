@@ -1,6 +1,6 @@
 ﻿$(document).ready(function(){
-	//debugger
-	if(localStorage.getItem("authenCookie") != ""){
+//	debugger
+	if(localStorage.getItem("authenCookie") != "" && localStorage.getItem("authenCookie") != null){
 		$.ajax({
 			method:"GET",
 			url: "http:/localhost:9090/api/home",

@@ -1,4 +1,4 @@
-package com.example.demo.Auth;
+package com.example.demo.auth;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
