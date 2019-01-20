@@ -110,6 +110,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -151,6 +152,18 @@ public class User {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "auth_user_role", joinColumns = @JoinColumn(name = "auth_user_id"), inverseJoinColumns = @JoinColumn(name = "auth_role_id"))
 	private Set<Role> roles;
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy="users")
+	private Set<Company> companies; 
+
+	public Set<Company> getCompanies() {
+		return companies;
+	}
+
+	public void setCompanies(Set<Company> conpanies) {
+		this.companies = companies;
+	}
 
 	public int getId() {
 		return id;

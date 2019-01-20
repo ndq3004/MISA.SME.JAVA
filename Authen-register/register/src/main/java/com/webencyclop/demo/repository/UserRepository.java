@@ -13,8 +13,7 @@ import com.webencyclop.demo.model.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	@Query(value="select u.email FROM auth_user u WHERE u.auth_user_id = :id", nativeQuery=true)
-	public List<String> findContactEmail(@Param("id")int id);
-	
+	public List<String> findContactEmail(@Param("id")int id);	
 	public User findByContactEmail(String contactEmail);
 	//public User findByEmail(String contactEmail);
 	public User findByContactMobile(String contactMobile);	

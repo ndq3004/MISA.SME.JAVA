@@ -1,9 +1,12 @@
 package com.webencyclop.demo.auth.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.WebUtils;
 
@@ -11,16 +14,22 @@ import com.webencyclop.demo.auth.exception.InvalidRequestException;
 import com.webencyclop.demo.auth.middlewares.Authenticate;
 import com.webencyclop.demo.auth.util.JwtUtil;
 import com.webencyclop.demo.auth.util.ValidateUtil;
+import com.webencyclop.demo.model.Company;
 import com.webencyclop.demo.model.Role;
 import com.webencyclop.demo.model.User;
+import com.webencyclop.demo.repository.CompanyRepository;
 import com.webencyclop.demo.repository.RoleRepository;
 import com.webencyclop.demo.repository.UserRepository;
 import com.webencyclop.demo.service.*;
+
+import antlr.collections.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -40,7 +49,7 @@ import org.springframework.validation.BindingResult;
 import com.webencyclop.demo.form.*;
 @CrossOrigin
 @RestController
-public class UserController {
+public class UserController<E> {
 	private static final String ERROR_MESSAGE = "error1";
 	
 	@Autowired
@@ -51,6 +60,9 @@ public class UserController {
 	UserService userService;
 	@Autowired
 	UserServiceImp userSvIml;
+	@Autowired
+	CompanyRepository companyRepository;
+	
 	@CrossOrigin
 	@RequestMapping(value = "/api/login", method = RequestMethod.POST)
 	public ResponseEntity<Object> login(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws Exception{
@@ -103,52 +115,7 @@ public class UserController {
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
 	
-//		
-//	@RequestMapping(value = "/api/home", method = RequestMethod.GET)
-//	public ResponseEntity<Object> home(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {		
-//		Authenticate.Auth(httpServletRequest, httpServletResponse);
-//		// tra ve du lieu home neu req duoc xac thuc nguoi dung
-//		String result="this is home data for authen req";
-//		
-//		return new ResponseEntity<>(result, HttpStatus.OK);
-//	}
-	
-//	@RequestMapping(value = "/api/login", method = RequestMethod.POST)
-//	public ResponseEntity<Object> login(@RequestBody LoginForm loginForm) throws Exception{
-//		
-//	    String email= loginForm.getEmail();
-//		String password= loginForm.getPassword();
-//		
-//		System.out.println("flag" + email + password);
-//		//if(!ValidateUtil.isValidEmailAddress(email) || !ValidateUtil.isValidPassword(password)) throw new InvalidRequestException() ;
-//
-//		// cần 1 hàm kiểm tra username ,password trong if ở đây 
-//
-//		if(!userSvIml.isUser(email, password)) throw new InvalidRequestException();
-//		
-//		System.out.println("flag2");
-//		//cần 1 hàm đổ các dữ liệu vào đây, dữ liệu để nhận biết người dùng được nhét vào token
-//		User user = userRepository.findByContactEmail(email);
-//    	System.out.println("flag3" + user.getContactEmail());
-//	    long id=user.getId();	
-//	    int roleId=1;
-//
-//			
-//	    // Tạo token,set cookie
-//	    String iss="MISA";
-//        long nowMillis = System.currentTimeMillis();
-//        Date now = new Date(nowMillis);
-//        long expMillis=86400000;
-//        Date exp=new Date(nowMillis+expMillis);
-//		String token = JwtUtil.generateToken(iss,now,exp,email,id,roleId);
-//
-//		// một số thông tin basic có thể trả về kèm luôn cho client tiện routing,gửi tiếp req,...,
-//		JSONObject obj = new JSONObject();
-//
-//		obj.put("token", token);
-//
-//		return new ResponseEntity<>(obj, HttpStatus.OK);
-//	}
+
 	@RequestMapping(value = "/api/home", method = RequestMethod.GET)
 	public ResponseEntity<Object> home(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse){		
 		Authenticate.Auth(httpServletRequest, httpServletResponse);
@@ -186,21 +153,63 @@ public class UserController {
 		}
 
 	}
-//	@RequestMapping(value = "/api/home", method = RequestMethod.GET)
-//	public ResponseEntity<Object> home(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {		
-//		Authenticate.Auth(httpServletRequest, httpServletResponse);
-//		// tra ve du lieu home neu req duoc xac thuc nguoi dung
-//		String result="this is home data for authen req";
-//		
-//		return new ResponseEntity<>(result, HttpStatus.OK);
-//	}
-//	
+	
 	@RequestMapping(value = "/api/logout", method = RequestMethod.GET)
 	public ResponseEntity<Object> logout(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {	
 		Authenticate.Auth(httpServletRequest, httpServletResponse);
 		//CookieUtil.clear(httpServletResponse);
 		String result="Logout success";
 		return new ResponseEntity<>(result, HttpStatus.OK);
-
+	}
+	
+	@RequestMapping(value="/addCompany", method = RequestMethod.POST)
+	public ResponseEntity<Object> addCompanyUserWork(@RequestBody Company company,HttpServletRequest httpServletRequest,
+													HttpServletResponse httpServletResponse){
+		Authenticate.Auth(httpServletRequest, httpServletResponse);
+		String email = (String) httpServletRequest.getAttribute("email");
+		try {
+			User user = userRepository.findByContactEmail(email);
+			if(user != null) {
+				Set<Company> user_companyCompanies = user.getCompanies();
+				for (Company c : user_companyCompanies) {
+					if(c.getCompanyTaxNumber().equals(company.getCompanyTaxNumber())) {
+						return new ResponseEntity<>("exist", HttpStatus.NOT_ACCEPTABLE);
+					}
+				}
+				if(companyRepository.findByCompanyTaxNumber(company.getCompanyTaxNumber()) != null) {
+					user.setCompanies((Set<Company>) company);
+					userRepository.save(user);				}
+				else {
+//					user.setCompanies((Set<Company>) company);
+					//companyRepository.saveCompany(company);
+					
+//					Set<User> setUsers = new HashSet<User>();
+//					setUsers.add(user);
+					userService.saveCompany(company,user);	
+					userRepository.save(user);
+				}				
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return  new ResponseEntity<>("Add company successfully!",HttpStatus.OK);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@GetMapping(value="/getCompanyUser")
+	public Set<Company> getCompanyuser(HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse){
+//		Authenticate.Auth(httpServletRequest, httpServletResponse);
+//		String email = (String) httpServletRequest.getAttribute("email");
+		String email = "ndq3004@gmail.com";
+		
+		return companyRepository.findByUserEmail(email);
+	}
+	
+	@PostMapping(value="/test")
+	public ResponseEntity<Object> testbody(@RequestParam int a){
+		System.out.println("get");
+		return new ResponseEntity<>("success", HttpStatus.BAD_GATEWAY);
 	}
 }

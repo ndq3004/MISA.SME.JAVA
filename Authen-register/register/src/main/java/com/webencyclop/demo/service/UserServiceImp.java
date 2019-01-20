@@ -10,8 +10,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.webencyclop.demo.model.Company;
 import com.webencyclop.demo.model.Role;
 import com.webencyclop.demo.model.User;
+import com.webencyclop.demo.repository.CompanyRepository;
 import com.webencyclop.demo.repository.RoleRepository;
 import com.webencyclop.demo.repository.UserRepository;
 
@@ -26,6 +28,9 @@ public class UserServiceImp implements UserService {
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	CompanyRepository companyRepository;
 	
 	@Override
 	public void saveUser(User user){
@@ -59,6 +64,12 @@ public class UserServiceImp implements UserService {
 		roleRepository.save(role);
 	}
 	
+	@Override
+	public void saveCompany(Company company, User user) {
+		// TODO Auto-generated method stub
+		company.setUsers(new HashSet<User>(Arrays.asList(user)));
+		companyRepository.save(company);
+	}
 
 	@Override
 	public boolean isUserAlreadyPresent(User user) {
