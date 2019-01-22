@@ -21,20 +21,27 @@ var loginJS = Object.create({
 					password: $('#txtPassword').val()};
     		$.ajax({
     			method:"POST",
-    			url: "http://localhost:9090/api/register",
+    			url: MISA.Config.loginUrl+"/api/register",
     			contentType:"application/json",
     			data: JSON.stringify(jsondata),   					
     			success: function(data, textStatus, xhr){
 
     				if(textStatus=="success") {
-    					alert("đăng kí thành công. Click để chuyển tới trang đăng nhập");
-    					window.location.href="/login";
+    					noticeAlert(1,"Đăng kí thành công. Đang để chuyển tới trang đăng nhập!");
+    					setTimeout(function(){
+    						window.location.href="/login.html";
+    					}, 2000)
+    					
     				}
     			},
     			error: function(data, txtStatus, xhr){
-                        $('#register-error').text("Tài khoản đã tồn tại!");
-    	
-    				
+                    if(data.status == 409){
+                    	$('#register-error').text("Tài khoản đã tồn tại!");
+                    }    
+                    else {
+                    	$('#register-error').text("Lỗi đăng kí. Vui lòng thử lại");
+                    }
+                    	
     			}
     					
     		})
@@ -48,11 +55,34 @@ var loginJS = Object.create({
 function isNotEmpty(){
 	if($('#txtContactMobile').val()==='' || $('#txtContactEmail').val()==="" || $('#txtPassword').val()==="" || $('#txtRePassword').val()==="")
 	{
-		alert("vui long nhap day du du lieu!" )
+		$('#register-error').text("vui long nhap day du du lieu!");
 		return false;
 	}
 	else{
-		if(!($('#txtPassword').val() === $('#txtRePassword').val())) return false; 
+		if(!($('#txtPassword').val() === $('#txtRePassword').val())) 
+		{
+			$('#register-error').text("Password không trùng khớp");
+			return false; 
+		}
 	}
 	return true;
+}
+
+
+function noticeAlert(stt, mes){
+	//1 = success, 2 = error
+	if(stt == 0) {
+		$('#statusField').css("display","block");
+		$('#statusField').css("background-color","red");
+		$('#statusField').text(mes);
+		setTimeout(function(){$('#statusField').fadeOut(2000)}, 1000);
+	}
+	else if(stt == 1){
+		$('#statusField').css("display","block");
+		$('#statusField').css("background-color","green");
+		$('#statusField').html(mes);
+		setTimeout(function(){$('#statusField').fadeOut(2000)}, 1000);	
+	}
+
+
 }

@@ -271,7 +271,7 @@ table tr {
 /*Menu*/
 .main-nav {
     position: absolute;
-    background-color: #00955b;
+    background-color: #6496C8;
     width: 230px;
     right: auto;
     left: 0px;
@@ -303,7 +303,7 @@ table tr {
             list-style-type: none;
             width: 100%;
             height: auto;
-            background-color: #00955b;
+            background-color: #6496C8;
             border: none;
         }
 
@@ -313,8 +313,8 @@ table tr {
                 height: 40px;
                 text-decoration: none;
                 color: #fff;
-                border-bottom: 1px solid #016087;
-                border-top: 1px solid #00b71f;
+                border-bottom: 1px solid #314e73;
+                border-top: 1px solid #ADC7E7;
             }
 
                 .main-nav .menu-parent li a tr:hover, .menu-parent li .group-class:hover {

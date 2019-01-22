@@ -7,7 +7,7 @@
         display: table-cell;
         width: 22px;
         height: 22px;
-        background: #fff url(/Content/Images/Grid/trigger.png) no-repeat;
+        background: #fff url(/Contents/Images/Grid/trigger.png) no-repeat;
         background-position: 0 center;
         cursor: pointer;
     }

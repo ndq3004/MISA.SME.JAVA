@@ -1,13 +1,7 @@
-﻿var mcombobox = document.registerElement('x-foo');
-
+﻿
 $(document).ready(function () {
-    $(document).click(function () {
-        var target = event.target;
-        if (!$(target).hasClass('hide-if-outside')) {
-            $('.hide-if-outside').hide();
-        }
-    })
-    
+    $(document).click(commonJS.setHideOnClickOutSide);
+    $(document).on('click', 'table tbody tr', commonJS.rowTable_OnClick);
 });
 
 var commonJS = {
@@ -111,6 +105,11 @@ var commonJS = {
             $('.msg-success').slideUp(1000);
         }, 3000);
     },
+
+    /* --------------------------------------------
+     * Chuyển các ký tự có dấu tiếng việc sang chữ không dấu
+     * Created by: NVMANH (03/03/2018)
+     */
     change_alias: function (alias) {
         var str = alias;
         str = str.toLowerCase();
@@ -126,10 +125,16 @@ var commonJS = {
         str = str.trim();
         return str;
     },
+
+    /* --------------------------------------------
+     * Select vào dòng trong table dữ liệu
+     * Created by: NVMANH (03/03/2018)
+     */
     rowTable_OnClick: function () {
-        $('table tr').removeClass('rowSelected');
+        $(this).siblings('.rowSelected').removeClass('rowSelected');
         this.classList.add('rowSelected');
     },
+
     /* --------------------------------------------
      * Select vào dòng đầu tiên trong bảng dữ liệu
      * Created by: NVMANH (03/03/2018)
@@ -181,6 +186,18 @@ var commonJS = {
         if (charCode > 31 && (charCode < 48 || charCode > 57))
             return false;
         return true;
+    },
+
+    /* --------------------------------------------
+     * Ẩn hiện các box có thực hiện ẩn hiện khi nhấn click
+     * Điều kiện là phải có class .hide-of-out-side
+     * Created by: NVMANH (03/03/2018)
+     */
+    setHideOnClickOutSide: function () {
+        var target = event.target;
+        if (!$(target).hasClass('hide-if-outside')) {
+            $('.hide-if-outside').hide();
+        }
     }
 }
 var initCommon = {
@@ -202,6 +219,10 @@ jQuery.fn.removeAllAttributes = function () {
     });
 }
 
+/* --------------------------------------------
+ * Phương thức định dạng string
+ * Created by: NVMANH (03/03/2018)
+ */
 if (!String.prototype.format) {
     String.prototype.format = function () {
         var args = arguments;
