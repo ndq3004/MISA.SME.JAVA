@@ -182,31 +182,16 @@ public class PaymentReceiptRepository {
 
 		try {
 			 tx = session.beginTransaction();
+			 session.save(paymentReceipt);
 			 if(paymentReceipt.getInvoices()!=null) {
-				 //luu paymentReceipt
-				 UUID uuid=UUID.randomUUID();
-				 String refID=uuid.toString();
-				 System.out.println(refID);
-				 paymentReceipt.setRefID(refID);
-				 session.save(paymentReceipt);
+
 				 List<InvoiceDetail> invoices=paymentReceipt.getInvoices();
 				 for(InvoiceDetail invoice:invoices) {
-					 //thuc hien luu
-					 StringBuffer buffer=new StringBuffer("INSERT INTO table_name ( discription, amountOC,amount,accountObjectID,sortOrder,status,refID)");
-					 buffer.append("values( :discription, :amountOC,:amount,:accountObjectID,:sortOrder,:status,:refID)");
-					 session.createQuery(buffer.toString())
-					 .setParameter("refID", paymentReceipt.getRefID())
-					 .setParameter("discription", invoice.getDiscription())
-					 .setParameter("amountOC", invoice.getAmountOC())
-					 .setParameter("amount", invoice.getAmount())
-					 .setParameter("accountObjectID", invoice.getAccountObjectID())
-					 .setParameter("status", invoice.getStatus())
-					 .setParameter("sortOrder", invoice.getSortOrder())
-					 .executeUpdate(); 
+					 invoice.setPayment(paymentReceipt);
+					 session.save(invoice);
 				 } 
 			 }
 			 
-			 session.save(paymentReceipt);
 			tx.commit();
 		} catch (Exception e) {
 			if (tx!=null) tx.rollback();
@@ -227,19 +212,22 @@ public class PaymentReceiptRepository {
 		int result=0;
 		try {
 			 tx = session.beginTransaction();
-			 
-			 //phai xoa ca lien ket nua
-			 session.createQuery("delete from InvoiceDetail where payment.refID=:refID")
-			 .setParameter("refID", paymentReceipt.getRefID()).executeUpdate(); 
-			 
+			
+			 session.save(paymentReceipt);
 			 if(paymentReceipt.getInvoices()!=null) {
-				 //luu invoice
+
 				 List<InvoiceDetail> invoices=paymentReceipt.getInvoices();
 				 for(InvoiceDetail invoice:invoices) {
-					 session.save(invoice);
-				 }
+					 if(invoice.getStatus()==1) {
+						 invoice.setPayment(paymentReceipt);
+						 invoice.setStatus(0);
+						 session.update(invoice);
+					 }else if(invoice.getStatus()==2) {
+						 session.delete(invoice);
+					 }
+				 } 
 			 }
-			 session.update("PaymentReceipt", paymentReceipt);
+			  
 			tx.commit();
 		} catch (Exception e) {
 			if (tx!=null) tx.rollback();

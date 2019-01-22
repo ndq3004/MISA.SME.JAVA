@@ -125,7 +125,7 @@ public class PaymentReceiptController {
 			double amount=0;
 			List<InvoiceDetail> invoices=payment.getInvoices();
 			
-			for(int i=0;i<=payment.getInvoices().size();i++) {
+			for(int i=0;i<payment.getInvoices().size();i++) {
 				if(payment.getInvoices().get(i).getAmount()<=0) {
 					map.put("error", "Invoice không hợp lệ");
 				return map;	
@@ -181,10 +181,38 @@ public class PaymentReceiptController {
 				String keyCompany="company1";
 				
 				payment.setKeyCompany(keyCompany);
+				
+
+				if(payment.getInvoices()==null) {
+					payment.setTotalAmount(Double.valueOf(0));
+					payment.setTotalAmountOC(Double.valueOf(0));
+					
+				}else {
+					double amount=0;
+					List<InvoiceDetail> invoices=payment.getInvoices();
+					for(int i=0;i<payment.getInvoices().size();i++) {
+						if(payment.getInvoices().get(i).getAmount()<=0) {
+							map.put("error", "Invoice không hợp lệ");
+						return map;	
+						}	
+						
+						
+						if(payment.getInvoices().get(i).getStatus()==0||payment.getInvoices().get(i).getStatus()==1) {
+							amount+=payment.getInvoices().get(i).getAmount().doubleValue();
+						}
+						else if()
+						payment.getInvoices().get(i).setStatus(0);
+						amount+=payment.getInvoices().get(i).getAmount().doubleValue();
+					}
+					payment.setTotalAmount(Double.valueOf(amount));
+				}
+				
+				
 			int status=paymentService.update(payment);
 			if(status==1) map.put("message", "success!");
 			else map.put("error", "fail!");
 			return map;
+			
 		}
 	
 		
