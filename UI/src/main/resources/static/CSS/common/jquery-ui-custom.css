@@ -3,9 +3,9 @@
 }
 
 .ui-widget-header {
-    background-color: #00955b !important;
+    background-color: #6496C8 !important;
     border: none !important;
-    border-radius: unset !important;
+    border-radius: 3px 3px 0 0 !important;
     padding: 2px 0px 4px 4px !important;
 }
 
@@ -18,7 +18,7 @@
     width: 16px !important;
     height: 16px !important;
     margin: -8px 0 0 0 !important;
-    background-color: #00955b;
+    background-color: #6496C8;
     border: none !important;
     border-radius: 100% !important;
     cursor: pointer;

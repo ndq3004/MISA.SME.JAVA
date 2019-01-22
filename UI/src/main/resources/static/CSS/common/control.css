@@ -70,31 +70,31 @@ textarea {
     display: inline-block;
     width: 16px;
     height: 16px;
-    background-image: url('/Content/Icons/Save16.png');
+    background-image: url('/Contents/Icons/Save16.png');
     background-position: center center;
     background-repeat: no-repeat;
 }
 
 .btn-customer-save-icon {
-    background-image: url('/Content/Icons/Save16.png');
+    background-image: url('/Contents/Icons/Save16.png');
     background-position: center center;
     background-repeat: no-repeat;
 }
 
 .btn-customer-saveadd-icon {
-    background-image: url('/Content/Icons/SaveAdd16.png');
+    background-image: url('/Contents/Icons/SaveAdd16.png');
     background-position: center center;
     background-repeat: no-repeat;
 }
 
 .btn-customer-cancel-icon {
-    background-image: url('/Content/Icons/Disable16.png');
+    background-image: url('/Contents/Icons/Disable16.png');
     background-position: center center;
     background-repeat: no-repeat;
 }
 
 .btn-customer-help-icon {
-    background-image: url('/Content/Images/IconSprite.png');
+    background-image: url('/Contents/Images/IconSprite.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-position: 0-1600px !important;

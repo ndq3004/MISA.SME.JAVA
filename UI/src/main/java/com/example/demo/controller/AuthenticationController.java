@@ -8,11 +8,11 @@ public class AuthenticationController {
 
 
 
-	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/login", "/" }, method = RequestMethod.GET)
 	public String login() {
 //		ModelAndView modelAndView = new ModelAndView();
 //		modelAndView.setViewName("Views/login"); // resources/template/login.html
-		return "Views/login";
+		return "/login";
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -21,18 +21,18 @@ public class AuthenticationController {
 //		User user = new User();
 //		modelAndView.addObject("user", user);
 //		modelAndView.setViewName("/Views/register"); // resources/template/register.html
-		return "/Views/register";
+		return "/register";
 	}
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home() {
 //		ModelAndView modelAndView = new ModelAndView();
 //		modelAndView.setViewName("/Views/home"); // resources/template/home.html
-		return "/Views/home";
+		return "/home";
 	}
 	@RequestMapping(value = "/rae", method = RequestMethod.GET)
 	public String rae() {
-		return "/Views/rae";
+		return "/rae";
 	}
 
 	
